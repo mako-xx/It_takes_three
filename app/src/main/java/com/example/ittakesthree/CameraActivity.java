@@ -99,8 +99,7 @@ public class CameraActivity extends AppCompatActivity {
 
 
 
-    private void openAlbums()
-    {}
+
 
     private void showRequestDeniedDialog(int requestCode)
     {
@@ -122,7 +121,6 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    String currentPhotoPath;
 
     private void openCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -148,6 +146,13 @@ public class CameraActivity extends AppCompatActivity {
         //galleryAddPic();
     }
 
+    private void openAlbums()
+    {
+        Intent gallery = new Intent(Intent.ACTION_PICK);
+        gallery.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        startActivityForResult(gallery, 1);
+    }
+
 
 
     private File createImageFile() throws IOException {
@@ -167,10 +172,7 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     //-------------------get-image-file
-    private void getImageFile()
-    {
-        //File newFile = new File()
-    }
+
 
     private void galleryAddPic() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
@@ -185,6 +187,7 @@ public class CameraActivity extends AppCompatActivity {
     private Intent cameraOpenIntent;
     private Intent albumsOpenIntent;
 
+    private String currentPhotoPath;
     private Intent pictureViewIntent;
 
     static final int REQUEST_OPEN_CAMERA = 1001;

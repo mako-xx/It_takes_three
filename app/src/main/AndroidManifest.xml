@@ -24,7 +24,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -36,14 +36,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ItTakesThree">
         <activity
+            android:name=".MyAlbumActivity"
+            android:exported="false" />
+        <activity
             android:name=".CameraActivity"
             android:exported="false" />
         <activity
             android:name=".mapview"
             android:exported="true"
-            android:theme="@android:style/Theme.Light.NoTitleBar">
-
-        </activity>
+            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -54,7 +55,6 @@
             </intent-filter>
         </activity>
 
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.android.fileprovider"
@@ -62,9 +62,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
-
 
         <meta-data
             android:name="com.amap.api.v2.apikey"

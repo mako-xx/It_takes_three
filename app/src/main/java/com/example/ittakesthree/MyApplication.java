@@ -15,4 +15,8 @@ public class MyApplication extends Application {
 
     public static File currentImageFile = null;
     public static String currentImageFileName = null;
+
+    public static File RETURNFILE;
+
+    public static final String SOCKETIP = "192.168.50.82";
 }
