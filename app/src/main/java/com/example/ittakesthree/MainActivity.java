@@ -2,6 +2,7 @@ package com.example.ittakesthree;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -90,5 +91,11 @@ public class MainActivity extends AppCompatActivity {
         poiSearch.setOnPoiSearchListener(new POIListener());
         poiSearch.searchPOIAsyn();
 
+    }
+
+    public void openCamera(View view)
+    {
+        Intent intent = new Intent(this, CameraActivity.class);
+        startActivity(intent);
     }
 }

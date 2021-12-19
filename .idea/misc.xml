@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/ANO4679/Projects/Java/android/It_Takes_Three/It_Takes_Three/app/src/main/res/layout/activity_camera.xml" value="0.1" />
+        <entry key="..\:/ANO4679/Projects/Java/android/It_Takes_Three/It_Takes_Three/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/ANO4679/Projects/Java/android/It_Takes_Three/It_Takes_Three/app/src/main/res/layout/activity_map.xml" value="0.1" />
+        <entry key="..\:/ANO4679/Projects/Java/android/It_Takes_Three/It_Takes_Three/app/src/main/res/xml/file_paths.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="17" project-jdk-type="JavaSDK" />
+</project>
