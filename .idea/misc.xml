@@ -3,14 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/ANO4679/Projects/Java/android/It_Takes_Three/It_Takes_Three/app/src/main/res/layout/activity_camera.xml" value="0.1" />
-        <entry key="..\:/ANO4679/Projects/Java/android/It_Takes_Three/It_Takes_Three/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/ANO4679/Projects/Java/android/It_Takes_Three/It_Takes_Three/app/src/main/res/layout/activity_map.xml" value="0.1" />
-        <entry key="..\:/ANO4679/Projects/Java/android/It_Takes_Three/It_Takes_Three/app/src/main/res/layout/activity_my_album.xml" value="0.1" />
-        <entry key="..\:/ANO4679/Projects/Java/android/It_Takes_Three/It_Takes_Three/app/src/main/res/xml/file_paths.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.10208333333333333" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/drawable/ic_baseline_remove.xml" value="0.10208333333333333" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/drawable/ic_launcher_background.xml" value="0.10208333333333333" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="17" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>

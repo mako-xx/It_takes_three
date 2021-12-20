@@ -24,4 +24,7 @@
     <dimen name="margin_padding">15dp</dimen>
     <dimen name="zero">0dp</dimen>
     <dimen name="trace_spinner_padding">2dp</dimen>
+
+    <dimen name="tfe_bottom_sheet_corner_radius">15dp</dimen>
+    <dimen name="tfe_bottom_sheet_top_padding">8dp</dimen>
 </resources>

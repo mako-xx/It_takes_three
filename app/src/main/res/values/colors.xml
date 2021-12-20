@@ -37,4 +37,10 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 
+    <color name="color_primary">#ffa800</color>
+    <color name="color_primary_dark">#ff6f00</color>
+    <color name="color_accent">#425066</color>
+
+    <color name="semi_transparent">#66000000</color>
+
 </resources>
