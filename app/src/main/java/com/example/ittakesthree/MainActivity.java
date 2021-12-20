@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import com.example.ittakesthree.luggage.ClassifierActivity;
 
 import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.ServiceSettings;
@@ -96,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
     public void openCamera(View view)
     {
         Intent intent = new Intent(this, CameraActivity.class);
+        startActivity(intent);
+    }
+
+    public void openLuggage(View view)
+    {
+        Intent intent = new Intent(this, ClassifierActivity.class);
         startActivity(intent);
     }
 }

@@ -134,11 +134,6 @@ public class ClassifierActivity extends AbstractCameraActivity implements OnImag
                                         @Override
                                         public void run() {
                                             showResultsInBottomSheet(results);
-                                            showFrameInfo(previewWidth + "x" + previewHeight);
-                                            showCropInfo(imageSizeX + "x" + imageSizeY);
-                                            showCameraResolution(cropSize + "x" + cropSize);
-                                            showRotationInfo(String.valueOf(sensorOrientation));
-                                            showInference(lastProcessingTimeMs + "ms");
                                         }
                                     });
                         }

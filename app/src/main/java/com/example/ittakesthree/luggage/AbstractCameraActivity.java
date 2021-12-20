@@ -36,6 +36,7 @@ import androidx.annotation.UiThread;
 
 import com.example.ittakesthree.luggage.env.ImageUtils;
 import com.example.ittakesthree.luggage.env.Logger;
+import com.example.ittakesthree.MyApplication;
 
 import org.tensorflow.lite.examples.classification.tflite.Classifier.Device;
 import org.tensorflow.lite.examples.classification.tflite.Classifier.Model;
@@ -43,15 +44,15 @@ import org.tensorflow.lite.examples.classification.tflite.Classifier.Recognition
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.List;
 import com.example.ittakesthree.R;
 
 public abstract class AbstractCameraActivity extends AppCompatActivity
-    implements OnImageAvailableListener,
+        implements OnImageAvailableListener,
         Camera.PreviewCallback,
         View.OnClickListener,
-        AdapterView.OnItemClickListener
-{
+        AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
     private static final Logger LOGGER = new Logger();
 
     private static final int PERMISSIONS_REQUEST = 1;
@@ -77,11 +78,19 @@ public abstract class AbstractCameraActivity extends AppCompatActivity
             recognitionValueTextView,
             recognition1ValueTextView,
             recognition2ValueTextView;
-    protected TextView frameValueTextView,
-            cropValueTextView,
-            cameraResolutionTextView,
-            rotationTextView,
-            inferenceTimeTextView;
+
+    protected TextView luggage_1;
+    protected TextView luggage_2;
+    protected TextView luggage_3;
+    protected TextView luggage_4;
+    protected TextView luggage_5;
+    protected TextView luggage_6;
+    protected TextView luggage_7;
+    protected TextView luggage_8;
+    protected TextView luggage_9;
+
+    protected ArrayList<String> luggageList;
+
     protected ImageView bottomSheetArrowImageView;
     private ImageView plusImageView, minusImageView;
     private Spinner modelSpinner;
@@ -92,6 +101,7 @@ public abstract class AbstractCameraActivity extends AppCompatActivity
     private Device device = Device.CPU;
     private int numThreads = -1;
 
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         LOGGER.d("onCreate " + this);
@@ -100,32 +110,36 @@ public abstract class AbstractCameraActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_classifier);
 
+        MyApplication.luggageItemList = new ArrayList<>();
+
         if (hasPermission()) {
             setFragment();
         } else {
             requestPermission();
         }
 
-        threadsTextView = findViewById(R.id.threads);
-        plusImageView = findViewById(R.id.plus);
-        minusImageView = findViewById(R.id.minus);
-        modelSpinner = findViewById(R.id.model_spinner);
-        deviceSpinner = findViewById(R.id.device_spinner);
         bottomSheetLayout = findViewById(R.id.bottom_sheet_layout);
         gestureLayout = findViewById(R.id.gesture_layout);
         sheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
         bottomSheetArrowImageView = findViewById(R.id.bottom_sheet_arrow);
+
+        luggage_1 = findViewById(R.id.luggage_item_1);
+        luggage_2 = findViewById(R.id.luggage_item_2);
+        luggage_3 = findViewById(R.id.luggage_item_3);
+        luggage_4 = findViewById(R.id.luggage_item_4);
+        luggage_5 = findViewById(R.id.luggage_item_5);
+        luggage_6 = findViewById(R.id.luggage_item_6);
+        luggage_7 = findViewById(R.id.luggage_item_7);
+        luggage_8 = findViewById(R.id.luggage_item_8);
+        luggage_9 = findViewById(R.id.luggage_item_9);
+        luggageList = new ArrayList<>();
 
         ViewTreeObserver vto = gestureLayout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                            gestureLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                        } else {
-                            gestureLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        }
+                        gestureLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                         //                int width = bottomSheetLayout.getMeasuredWidth();
                         int height = gestureLayout.getMeasuredHeight();
 
@@ -170,21 +184,6 @@ public abstract class AbstractCameraActivity extends AppCompatActivity
         recognition2TextView = findViewById(R.id.detected_item2);
         recognition2ValueTextView = findViewById(R.id.detected_item2_value);
 
-        frameValueTextView = findViewById(R.id.frame_info);
-        cropValueTextView = findViewById(R.id.crop_info);
-        cameraResolutionTextView = findViewById(R.id.view_info);
-        rotationTextView = findViewById(R.id.rotation_info);
-        inferenceTimeTextView = findViewById(R.id.inference_info);
-
-        modelSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-        deviceSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-
-        plusImageView.setOnClickListener(this);
-        minusImageView.setOnClickListener(this);
-
-        model = Model.valueOf(modelSpinner.getSelectedItem().toString().toUpperCase());
-        device = Device.valueOf(deviceSpinner.getSelectedItem().toString());
-        numThreads = Integer.parseInt(threadsTextView.getText().toString().trim());
     }
 
     protected int[] getRgbBytes() {
@@ -515,7 +514,11 @@ public abstract class AbstractCameraActivity extends AppCompatActivity
         if (results != null && results.size() >= 3) {
             Recognition recognition = results.get(0);
             if (recognition != null) {
-                if (recognition.getTitle() != null) recognitionTextView.setText(recognition.getTitle());
+                if (recognition.getTitle() != null)
+                {
+                    recognitionTextView.setText(recognition.getTitle());
+                    luggageRecognition(recognition.getTitle());
+                }
                 if (recognition.getConfidence() != null)
                     recognitionValueTextView.setText(
                             String.format("%.2f", (100 * recognition.getConfidence())) + "%");
@@ -537,26 +540,6 @@ public abstract class AbstractCameraActivity extends AppCompatActivity
                             String.format("%.2f", (100 * recognition2.getConfidence())) + "%");
             }
         }
-    }
-
-    protected void showFrameInfo(String frameInfo) {
-        frameValueTextView.setText(frameInfo);
-    }
-
-    protected void showCropInfo(String cropInfo) {
-        cropValueTextView.setText(cropInfo);
-    }
-
-    protected void showCameraResolution(String cameraInfo) {
-        cameraResolutionTextView.setText(cameraInfo);
-    }
-
-    protected void showRotationInfo(String rotation) {
-        rotationTextView.setText(rotation);
-    }
-
-    protected void showInference(String inferenceTime) {
-        inferenceTimeTextView.setText(inferenceTime);
     }
 
     protected Model getModel() {
@@ -611,21 +594,7 @@ public abstract class AbstractCameraActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.plus) {
-            String threads = threadsTextView.getText().toString().trim();
-            int numThreads = Integer.parseInt(threads);
-            if (numThreads >= 9) return;
-            setNumThreads(++numThreads);
-            threadsTextView.setText(String.valueOf(numThreads));
-        } else if (v.getId() == R.id.minus) {
-            String threads = threadsTextView.getText().toString().trim();
-            int numThreads = Integer.parseInt(threads);
-            if (numThreads == 1) {
-                return;
-            }
-            setNumThreads(--numThreads);
-            threadsTextView.setText(String.valueOf(numThreads));
-        }
+
     }
 
     //@Override
@@ -640,5 +609,55 @@ public abstract class AbstractCameraActivity extends AppCompatActivity
     //@Override
     public void onNothingSelected(AdapterView<?> parent) {
         // Do nothing.
+    }
+
+    protected void luggageRecognition(String luggageName)
+    {
+        boolean hasItem = false;
+        if (!luggageList.isEmpty()) {
+            for (String e : luggageList) {
+                if (e.equals(luggageName)) {
+                    hasItem = true;
+                    break;
+                }
+            }
+        }
+        if (!hasItem)
+        {
+            luggageList.add(luggageName);
+            MyApplication.luggageItemList.add(luggageName);
+            switch (luggageList.size())
+            {
+                case 1:
+                    luggage_1.setText(luggageName);
+                    break;
+                case 2:
+                    luggage_2.setText(luggageName);
+                    break;
+                case 3:
+                    luggage_3.setText(luggageName);
+                    break;
+                case 4:
+                    luggage_4.setText(luggageName);
+                    break;
+                case 5:
+                    luggage_5.setText(luggageName);
+                    break;
+                case 6:
+                    luggage_6.setText(luggageName);
+                    break;
+                case 7:
+                    luggage_7.setText(luggageName);
+                    break;
+                case 8:
+                    luggage_8.setText(luggageName);
+                    break;
+                case 9:
+                    luggage_9.setText(luggageName);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
