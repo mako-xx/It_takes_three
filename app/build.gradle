@@ -58,15 +58,13 @@ dependencies {
     // https://mvnrepository.com/artifact/com.alibaba/fastjson
     //implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.78'
     implementation 'com.google.code.gson:gson:2.8.9'
-<<<<<<< HEAD
+
 
     // Import the Task Vision Library dependency
     implementation 'org.tensorflow:tensorflow-lite-task-vision:0.1.0'
-}
-=======
+
     def room_version = "2.3.0"
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 }
->>>>>>> 540f982d08b21c1027f33301729fa4da953adf0b
