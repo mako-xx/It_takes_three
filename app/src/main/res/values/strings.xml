@@ -29,11 +29,15 @@
     <string name="tfe_ic_device" translatable="false">
         Device:
     </string>
+    <string name="no_result">对不起，没有查询到相关数据</string>
 
     <string-array name="tfe_ic_devices" translatable="false">
         <item>CPU</item>
         <item>GPU</item>
         <item>NNAPI</item>
     </string-array>
+    <string name="report_time">发布时间</string>
+    <string name="weather_live">实时</string>
+    <string name="weather_forecast">预报</string>
 
 </resources>
