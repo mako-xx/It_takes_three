@@ -39,6 +39,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ItTakesThree">
+
+        <activity android:name=".map.poisearch.PoiSearchAroundActivity">
+
+        </activity>
+
         <activity
             android:name=".MyAlbumActivity"
             android:exported="false" />
