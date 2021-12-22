@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="24dp"
+                android:text="用户名"
+                android:textColor="#4E4F59"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/accountEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="32dp"
+                android:background="@color/touming"
+                android:hint="请输入用户名"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#979797"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_hight"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:background="@color/line_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="20dp"
+                android:text="姓名"
+                android:textColor="#4E4F59"
+                android:textSize="16dp" />
+
+
+            <EditText
+                android:id="@+id/nameEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="32dp"
+                android:background="@color/touming"
+                android:hint="请输入姓名"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#979797"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_hight"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:background="@color/line_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="24dp"
+                android:text="性别"
+                android:textColor="#4E4F59"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/sex0"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/corner_choice"
+                    android:gravity="center"
+                    android:text="男"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/sex1"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/corner_unchoice"
+                    android:gravity="center"
+                    android:text="女"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="24dp"
+                android:text="电话"
+                android:textColor="#4E4F59"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/phoneEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="32dp"
+                android:background="@color/touming"
+                android:hint="请输入电话"
+                android:inputType="number"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#979797"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_hight"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:background="@color/line_color" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="19dp"
+                android:text="密码"
+                android:textColor="#4E4F59"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/edit_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="32dp"
+                android:background="@color/touming"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#979797"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_hight"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:background="@color/line_color" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="19dp"
+                android:text="确认密码"
+                android:textColor="#4E4F59"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/edit_repass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="32dp"
+                android:background="@color/touming"
+                android:hint="请输入确认密码"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#979797"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14dp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/but_ok"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/corner_button"
+        android:clickable="false"
+        android:gravity="center"
+        android:text="注册"
+        android:textColor="@color/white" />
+
+</LinearLayout>

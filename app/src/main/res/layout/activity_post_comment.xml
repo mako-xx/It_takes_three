@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/titleLayout"
+        layout="@layout/view_common_title" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_padding"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="@dimen/common_padding"
+        android:text="内容"
+        android:textColor="#4E4F59"
+        android:textSize="16dp" />
+
+    <EditText
+        android:id="@+id/contentEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_padding"
+        android:layout_marginRight="@dimen/common_padding"
+        android:background="@color/touming"
+        android:hint="请输入内容"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textColorHint="#979797"
+        android:textCursorDrawable="@drawable/color_cursor"
+        android:textSize="14dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_hight"
+        android:layout_marginLeft="@dimen/common_padding"
+        android:layout_marginRight="@dimen/common_padding"
+        android:background="@color/line_color" />
+
+
+    <TextView
+        android:id="@+id/commitBtn"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="@dimen/common_padding"
+        android:background="@drawable/corner_button"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="14dp" />
+</LinearLayout>
+

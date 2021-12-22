@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:padding="10dp"
+    android:background="@drawable/shape_loading_dialog"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:minWidth="140dp"
+    android:maxWidth="240dp"
+    android:orientation="vertical">
+
+<!--    <com.wang.avi.AVLoadingIndicatorView-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:id="@+id/avi"-->
+<!--        android:layout_width="45dp"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        app:indicatorName="LineSpinFadeLoaderIndicator"-->
+<!--         />-->
+
+    <ImageView
+        android:src="@drawable/ic_launcher_background"
+        android:id="@+id/avi"
+        android:layout_marginTop="15dp"
+        android:layout_width="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="45dp">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/avi"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="加载中..."
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>
+

@@ -7,10 +7,45 @@
         <entry key="..\:/It_Takes_Three/app/src/main/res/drawable/ic_baseline_remove.xml" value="0.10208333333333333" />
         <entry key="..\:/It_Takes_Three/app/src/main/res/drawable/ic_launcher_background.xml" value="0.10208333333333333" />
         <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_camera.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_change_info.xml" value="0.1" />
         <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_classifier.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_common_list.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_goodsdetail.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_help_detail.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_my_album.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_my_answer_list.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_my_comment_list.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_my_help_list.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_my_luggage.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_my_travel_list.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_poi_search_around.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_post.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_post_comment.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_post_help.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_post_travel.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_regieter.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_test.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_traveldetail.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/adapter_comment_listitem.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/adapter_dialog_listitem.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/adapter_goods_listitem.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/adapter_help_listitem.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/adapter_myanswer_listitem.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/adapter_post_griditem_pic.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/adapter_travel_listitem.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/dialog_common_tip.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/dialog_loading.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/fragment_main.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/fragment_self.xml" value="0.4466666666666667" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/header_helpdetail.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/header_traveldetail.xml" value="0.1" />
         <entry key="..\:/It_Takes_Three/app/src/main/res/layout/layout_bottom_sheet.xml" value="0.3333333333333333" />
-        <entry key="..\:/git/It_takes_three/app/src/main/res/layout/activity_search.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/listitem.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/view_common_title.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/view_refresh_footer.xml" value="0.1" />
+        <entry key="..\:/It_Takes_Three/app/src/main/res/layout/view_refresh_header.xml" value="0.1" />
       </map>
     </option>
   </component>

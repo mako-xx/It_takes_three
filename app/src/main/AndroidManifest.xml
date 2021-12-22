@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 允许获取wifi网络信息，用于网络定位，若无gps但仍需实现定位小蓝点功能则此权限必选 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许获取wifi状态改变，用于网络定位，若无gps但仍需实现定位小蓝点功能则此权限必选 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 允许写入扩展存储，用于数据缓存，若无此权限则写到私有目录 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许写设备缓存，用于问题排查 -->
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" /> <!-- 允许读设备等信息，用于问题排查 -->
@@ -23,17 +24,8 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- 声明后台定位权限 -->
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -43,44 +35,75 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ItTakesThree">
+
+
         <activity
-            android:name=".SearchActivity"
+            android:name=".ui.activity.main.self.MyAnswerListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.self.MyHelpListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.self.MyCommentListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.self.MyTravelListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.self.ChangeInfoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.help.PostHelpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.help.HelpDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.travel.PostActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.travel.PostCommentActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.travel.TravelDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.login.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.login.LoginActivity"
             android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service android:name="com.amap.api.location.APSService"></service>
-
         <activity
-            android:name=".map.LocationActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".map.RouteMapActivity"
+            android:name=".MainActivity"
             android:exported="true">
 
         </activity>
-        <activity android:name=".map.WalkRouteDetailActivity" />
-        <activity android:name=".map.DriveRouteDetailActivity"></activity>
+
         <activity
-            android:name=".WeatherSearchActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".map.poisearch.PoiSearchAroundActivity"
-            android:exported="true"></activity>
+            android:name=".luggage.MyLuggageActivity"
+            android:exported="true" />
+        <activity android:name=".map.poisearch.PoiSearchAroundActivity" />
         <activity
             android:name=".MyAlbumActivity"
             android:exported="false" />
         <activity
             android:name=".CameraActivity"
             android:exported="false" />
+        <activity
+            android:name=".mapview"
+            android:exported="true"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+
         <activity
             android:name=".luggage.ClassifierActivity"
             android:exported="true"

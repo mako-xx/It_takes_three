@@ -140,7 +140,7 @@ public class PoiSearchAroundActivity extends Activity implements OnClickListener
                 poiSearch.setBound(new SearchBound(lp, 5000, true));//
                 // 设置搜索区域为以lp点为圆心，其周围5000米范围
                 poiSearch.searchPOIAsyn();// 异步搜索
-            } catch (AMapException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
