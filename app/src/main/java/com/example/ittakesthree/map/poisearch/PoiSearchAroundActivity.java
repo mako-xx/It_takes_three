@@ -17,6 +17,7 @@ import com.amap.api.maps.AMap.OnMapClickListener;
 import com.amap.api.maps.AMap.OnMarkerClickListener;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.MapsInitializer;
 import com.amap.api.maps.model.BitmapDescriptor;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.CircleOptions;
@@ -27,6 +28,7 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
+import com.amap.api.services.core.ServiceSettings;
 import com.amap.api.services.core.SuggestionCity;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
@@ -50,7 +52,7 @@ public class PoiSearchAroundActivity extends Activity implements OnClickListener
     private PoiResult poiResult; // poi返回的结果
     private int currentPage = 0;// 当前页面，从0开始计数
     private PoiSearch.Query query;// Poi查询条件类
-    private LatLonPoint lp = new LatLonPoint(39.993743, 116.472995);// 116.472995,39.993743
+    private LatLonPoint lp = new LatLonPoint(30.42, 99.40);// 116.472995,39.993743
     private Marker locationMarker; // 选择的点
     private Marker detailMarker;
     private Marker mlastMarker;
@@ -65,8 +67,13 @@ public class PoiSearchAroundActivity extends Activity implements OnClickListener
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MapsInitializer.updatePrivacyShow(getApplicationContext(),true,true);
+        MapsInitializer.updatePrivacyAgree(getApplicationContext(),true);
+        ServiceSettings.updatePrivacyShow(getApplicationContext(),true,true);
+        ServiceSettings.updatePrivacyAgree(getApplicationContext(),true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poiaroundsearch_activity);
+
         mapview = (MapView)findViewById(R.id.mapView);
         mapview.onCreate(savedInstanceState);
         init();
