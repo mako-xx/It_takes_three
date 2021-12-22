@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/titleLayout"
+        layout="@layout/view_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/common_padding"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/common_padding"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="标题"
+                android:textColor="#4E4F59"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/titleEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/touming"
+                android:hint="请输入标题"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#979797"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_hight"
+                android:background="@color/line_color" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="内容"
+                android:textColor="#4E4F59"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/contentEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/touming"
+                android:hint="请输入内容"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="#979797"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_hight"
+                android:background="@color/line_color" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="14dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="上传图片"/>
+
+            <com.example.ittakesthree.ui.view.ChildGridView
+                android:id="@+id/gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:cacheColorHint="#00000000"
+                android:divider="@color/bantouming_bg"
+                android:dividerHeight="0dp"
+                android:horizontalSpacing="5dp"
+                android:numColumns="3"
+                android:scrollbars="none"
+                android:verticalSpacing="5dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/commitBtn"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/common_padding"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/corner_button"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="14dp" />
+</LinearLayout>
+

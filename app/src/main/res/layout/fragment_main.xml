@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/ll_bg"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/titleTv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="首页"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/rightTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:paddingRight="@dimen/common_padding"
+            android:text="发布攻略"
+            android:textColor="@color/mainBlack"
+            android:textSize="14dp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/bannerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"></androidx.viewpager.widget.ViewPager>
+
+        <LinearLayout
+            android:id="@+id/dot"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="vertical"></LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/common_padding"
+        android:layout_marginTop="10dp"
+        android:paddingRight="@dimen/common_padding"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/searchEt"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:paddingLeft="15dp"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:textColorHint="#999"
+            android:hint="请输入关键字"
+            android:background="@drawable/corner_border_search"/>
+        <TextView
+            android:id="@+id/searchBtn"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="搜索"
+            android:background="@drawable/corner_button"/>
+
+    </LinearLayout>
+
+
+    <com.example.ittakesthree.ui.refresh.PullToRefreshView
+        android:id="@+id/pullToRefreshView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@color/line_color"
+            android:dividerHeight="@dimen/line_hight"
+            android:listSelector="@color/touming"
+            android:scrollbars="none" />
+    </com.example.ittakesthree.ui.refresh.PullToRefreshView>
+</LinearLayout>

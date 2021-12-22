@@ -28,4 +28,11 @@
     <dimen name="tfe_bottom_sheet_corner_radius">15dp</dimen>
     <dimen name="tfe_bottom_sheet_top_padding">8dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="line_hight">1px</dimen>
+    <dimen name="title_bar">50dp</dimen>
+    <dimen name="common_padding">15dp</dimen>
 </resources>

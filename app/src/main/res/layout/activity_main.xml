@@ -1,40 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:andriod="http://schemas.android.com/apk/res/android"
-    andriod:layout_width="match_parent"
-    andriod:layout_height="match_parent"
-    andriod:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <Button
-        andriod:id="@+id/btn"
-        andriod:layout_width="50dp"
-        andriod:layout_height="50dp"
-        andriod:onClick="poi"/>
-    <Button
-        andriod:id="@+id/openCamera"
-        andriod:layout_width="wrap_content"
-        andriod:layout_height="wrap_content"
-        andriod:text="openCamera"
-        andriod:onClick="openCamera"/>
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/line"></FrameLayout>
 
-    <Button
-        andriod:id="@+id/openLuggage"
-        andriod:layout_width="wrap_content"
-        andriod:layout_height="wrap_content"
-        andriod:text="查看行李"
-        andriod:onClick="openLuggage"/>
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_hight"
+        android:layout_above="@id/bottomLayout"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:background="@color/line_color" />
 
-    <Button
-        andriod:id="@+id/openPoiSearch"
-        andriod:layout_width="wrap_content"
-        andriod:layout_height="wrap_content"
-        andriod:text="poiSearch"
-        andriod:onClick="openPOISearch"/>
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
 
-    <com.amap.api.maps.MapView
-        andriod:layout_width="match_parent"
-        andriod:layout_height="0dp"
-        andriod:layout_weight="1"
-        />
-    
+        <LinearLayout
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
 
-</LinearLayout>
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv1"
+                android:layout_marginTop="5dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/tab_home2" />
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="HOME"
+                android:textColor="@color/mainText"
+                android:textStyle="bold"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/button2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+
+<!--            android:layout_weight="1">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/iv2"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="32dp"-->
+<!--                android:src="@drawable/tab_xiaox" />-->
+<!--            <TextView-->
+<!--                android:id="@+id/tv2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:text="求助"-->
+<!--                android:textColor="@color/bar_grey"-->
+<!--                android:textSize="14dp" />-->
+<!--        </LinearLayout>-->
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:layout_weight="1">
+
+        </LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/button4"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+
+<!--            android:layout_weight="1">-->
+<!--            <ImageView-->
+<!--                android:id="@+id/iv4"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="32dp"-->
+<!--                android:src="@drawable/tab_dongt"/>-->
+<!--            <TextView-->
+<!--                android:id="@+id/tv4"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:text="亲子商城"-->
+<!--                android:textColor="@color/bar_grey"-->
+<!--                android:textSize="14dp" />-->
+<!--        </LinearLayout>-->
+        <LinearLayout
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:layout_weight="1">
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:id="@+id/iv5"
+                android:layout_width="32dp"
+                android:layout_height="30dp"
+                android:src="@drawable/tab_mine"/>
+
+            <TextView
+                android:id="@+id/tv5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="ME"
+                android:textColor="@color/bar_grey"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/button3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/tab_qiand" />
+
+
+</RelativeLayout>

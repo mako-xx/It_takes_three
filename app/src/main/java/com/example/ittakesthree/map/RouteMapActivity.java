@@ -98,7 +98,7 @@ public class RouteMapActivity extends Activity implements AMap.OnMapClickListene
         try {
             routeSearch = new RouteSearch(this);
             routeSearch.setRouteSearchListener(this);
-        } catch (AMapException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         bottomLayout = findViewById(R.id.bottom_layout);
