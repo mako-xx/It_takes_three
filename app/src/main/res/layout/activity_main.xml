@@ -23,6 +23,13 @@
         andriod:text="查看行李"
         andriod:onClick="openLuggage"/>
 
+    <Button
+        andriod:id="@+id/openPoiSearch"
+        andriod:layout_width="wrap_content"
+        andriod:layout_height="wrap_content"
+        andriod:text="poiSearch"
+        andriod:onClick="openPOISearch"/>
+
     <com.amap.api.maps.MapView
         andriod:layout_width="match_parent"
         andriod:layout_height="0dp"

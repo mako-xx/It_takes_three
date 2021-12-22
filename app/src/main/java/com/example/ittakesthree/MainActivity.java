@@ -17,6 +17,8 @@ import com.amap.api.services.weather.LocalWeatherLive;
 import com.amap.api.services.weather.LocalWeatherLiveResult;
 import com.amap.api.services.weather.WeatherSearch;
 import com.amap.api.services.weather.WeatherSearchQuery;
+import com.example.ittakesthree.luggage.MyLuggageActivity;
+import com.example.ittakesthree.map.poisearch.PoiSearchAroundActivity;
 
 import java.io.IOException;
 import java.text.BreakIterator;
@@ -102,7 +104,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void openLuggage(View view)
     {
-        Intent intent = new Intent(this, ClassifierActivity.class);
+        Intent intent = new Intent(this, MyLuggageActivity.class);
+        startActivity(intent);
+    }
+
+    public void openPOISearch(View view)
+    {
+        Intent intent = new Intent(this, PoiSearchAroundActivity.class);
         startActivity(intent);
     }
 }

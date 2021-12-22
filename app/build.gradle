@@ -38,6 +38,9 @@ android {
     aaptOptions {
         noCompress "tflite"
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -47,6 +50,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation files('/libs/Android_Map3D_SDK_V8.1.0_20211029.jar')
     implementation project(path: ':lib_task_api')
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
