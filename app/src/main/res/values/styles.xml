@@ -1,0 +1,114 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+
+    <!--    <style name="ThemeSplash" parent="Theme.AppCompat.Light.NoActionBar">-->
+    <!--        <item name="android:background">@mipmap/splash</item>-->
+    <!--        <item name="android:windowNoTitle">true</item>-->
+    <!--        <item name="android:windowFullscreen">true</item>-->
+    <!--        <item name="windowActionBar">false</item>-->
+    <!--        <item name="windowNoTitle">true</item>-->
+    <!--    </style>-->
+
+
+
+    <style name="LoadingDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--//是否半透明-->
+        <item name="android:windowIsTranslucent">false</item>
+        <!--//就是用来控制灰度的值，当为1时，界面除了我们的dialog内容是高亮显示的，dialog以外的区域是黑色的，完全看不到其他内容，系统的默认值是0.5-->
+        <item name="android:backgroundDimAmount">0</item>
+    </style>
+
+    <style name="custom_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 设置背景为空等于去掉了边框 -->
+        <item name="android:windowBackground">@color/touming</item>
+        <!-- 设置背景是否变暗 -->
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@style/dialogAnimation</item>
+    </style>
+    <!-- dialog进入退出动画 -->
+    <style name="dialogAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/dialog_out</item>
+        <item name="android:windowExitAnimation">@anim/dialog_in</item>
+    </style>
+    <style name="dialogWindowAnimButtomToTop" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_in2</item>
+        <item name="android:windowExitAnimation">@anim/dialog_out2</item>
+    </style>
+    <style name="BaseNoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+    <!--白色主题样式，，注意每一项都不能少-->
+    <style name="picture.white.style" parent="BaseNoActionBarTheme">
+        <!-- Customize your theme here. -->
+        <!--标题栏背景色-->
+        <item name="colorPrimary">@color/white</item>
+        <!--状态栏背景色-->
+        <item name="colorPrimaryDark">@color/white</item>
+        <!--是否改变图片列表界面状态栏字体颜色为黑色-->
+<!--        <item name="picture.statusFontColor">true</item>-->
+<!--        &lt;!&ndash;返回键图标&ndash;&gt;-->
+<!--        <item name="picture.leftBack.icon">@mipmap/ic_return</item>-->
+<!--        &lt;!&ndash;标题下拉箭头&ndash;&gt;-->
+<!--        <item name="picture.arrow_down.icon">@mipmap/orange_arrow_down</item>-->
+<!--        &lt;!&ndash;标题上拉箭头&ndash;&gt;-->
+<!--        <item name="picture.arrow_up.icon">@mipmap/orange_arrow_up</item>-->
+
+<!--        &lt;!&ndash;标题文字颜色&ndash;&gt;-->
+<!--        <item name="picture.title.textColor">@color/black</item>-->
+<!--        &lt;!&ndash;标题栏右边文字&ndash;&gt;-->
+<!--        <item name="picture.right.textColor">@color/black</item>-->
+<!--        &lt;!&ndash;图片列表勾选样式&ndash;&gt;-->
+<!--        <item name="picture.checked.style">@drawable/checkbox_num_selector</item>-->
+<!--        &lt;!&ndash;开启图片列表勾选数字模式,开启的话勾选样式要换&ndash;&gt;-->
+<!--        <item name="picture.style.checkNumMode">true</item>-->
+<!--        &lt;!&ndash;选择图片样式0/9&ndash;&gt;-->
+<!--        <item name="picture.style.numComplete">true</item>-->
+<!--        &lt;!&ndash;图片列表底部背景色&ndash;&gt;-->
+<!--        <item name="picture.bottom.bg">@color/white</item>-->
+<!--        &lt;!&ndash;图片列表预览文字颜色&ndash;&gt;-->
+<!--        <item name="picture.preview.textColor">@color/black</item>-->
+<!--        &lt;!&ndash;图片列表已完成文字颜色&ndash;&gt;-->
+<!--        <item name="picture.complete.textColor">@color/black</item>-->
+<!--        &lt;!&ndash;图片已选数量圆点背景色&ndash;&gt;-->
+<!--        <item name="picture.num.style">@drawable/num_oval</item>-->
+<!--        &lt;!&ndash;预览界面标题栏背景色&ndash;&gt;-->
+<!--        <item name="picture.ac_preview.title.bg">@color/white</item>-->
+<!--        &lt;!&ndash;预览界面标题文字颜色&ndash;&gt;-->
+<!--        <item name="picture.ac_preview.title.textColor">@color/black</item>-->
+<!--        &lt;!&ndash;预览界面已完成文字颜色&ndash;&gt;-->
+<!--        <item name="picture.ac_preview.complete.textColor">@color/black</item>-->
+<!--        &lt;!&ndash;预览界面底部背景色&ndash;&gt;-->
+<!--        <item name="picture.ac_preview.bottom.bg">@color/white</item>-->
+<!--        &lt;!&ndash;预览界面返回箭头&ndash;&gt;-->
+<!--        <item name="picture.preview.leftBack.icon">@mipmap/ic_return</item>-->
+<!--        &lt;!&ndash;裁剪页面标题背景色&ndash;&gt;-->
+<!--        <item name="picture.crop.toolbar.bg">@color/mainBg</item>-->
+<!--        &lt;!&ndash;裁剪页面状态栏颜色&ndash;&gt;-->
+<!--        <item name="picture.crop.status.color">@color/mainBg</item>-->
+<!--        &lt;!&ndash;裁剪页面标题文字颜色&ndash;&gt;-->
+<!--        <item name="picture.crop.title.color">@color/white</item>-->
+<!--        &lt;!&ndash;相册文件夹列表选中图标&ndash;&gt;-->
+<!--        <item name="picture.folder_checked_dot">@drawable/orange_oval</item>-->
+    </style>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 资讯listview的表头 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/refresh_header"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp">
+
+    <ImageView
+        android:id="@+id/refresh_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="20dip"
+        android:gravity="center"
+        android:src="@mipmap/ic_refresh_arrow"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/load_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:text="上拉加载"
+        android:textSize="14dp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/loadProgressLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible">
+
+
+        <ProgressBar
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:indeterminateDrawable="@drawable/load_more_anim"
+            android:indeterminateDuration="1000" />
+    </RelativeLayout>
+
+</RelativeLayout>

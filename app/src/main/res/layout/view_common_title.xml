@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rel_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/titleTv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar"
+            android:gravity="center"
+            android:text="首页"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColor="@color/mainBlack"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/backIv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:onClick="backTo"
+            android:paddingLeft="10dp"
+            android:paddingTop="15dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="15dp"
+            android:src="@mipmap/ic_return" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注销登录"
+            android:id="@+id/rightTv"
+            android:visibility="gone"
+            android:textSize="14dp"
+            android:textColor="@color/text_color_999"
+            android:paddingRight="@dimen/common_padding"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_hight"
+            android:layout_below="@id/titleTv"
+            android:background="@color/line_color" />
+    </RelativeLayout>
+
+</RelativeLayout>

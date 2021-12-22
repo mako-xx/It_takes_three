@@ -1,116 +1,145 @@
 package com.example.ittakesthree;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
+import android.text.TextPaint;
+import android.util.TypedValue;
 import android.view.View;
-import android.widget.Button;
-import com.example.ittakesthree.luggage.ClassifierActivity;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.amap.api.services.core.AMapException;
-import com.amap.api.services.core.ServiceSettings;
-import com.amap.api.services.poisearch.PoiSearch;
-import com.amap.api.services.weather.LocalWeatherForecastResult;
-import com.amap.api.services.weather.LocalWeatherLive;
-import com.amap.api.services.weather.LocalWeatherLiveResult;
-import com.amap.api.services.weather.WeatherSearch;
-import com.amap.api.services.weather.WeatherSearchQuery;
-import com.example.ittakesthree.luggage.MyLuggageActivity;
-import com.example.ittakesthree.map.poisearch.PoiSearchAroundActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import java.io.IOException;
-import java.text.BreakIterator;
+import com.example.ittakesthree.ui.activity.base.BaseActivity;
+import com.example.ittakesthree.ui.fragment.GoodsFragment;
+import com.example.ittakesthree.ui.fragment.HelpFragment;
+import com.example.ittakesthree.ui.fragment.MainFragment;
+import com.example.ittakesthree.ui.fragment.SelfFragment;
 
-import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Retrofit;
+import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new MyInterceptor()).build();
-    Retrofit retrofit = new Retrofit.Builder().baseUrl("https://restapi.amap.com/v5/place/").client(client).build();
-    PoiSearch poiSearch;
-    PoiSearch.Query query;
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private ArrayList<Fragment> mFragments = new ArrayList<>();
 
+    public static String name;
 
+    private View button1, button2, button3, button4, button5;
+    private TextView[] tvs = new TextView[5];
+    private ImageView[] ivs = new ImageView[5];
+    private int index = 0;
+    private int[] checkId={R.drawable.tab_home2,R.drawable.tab_xiaox2,R.drawable.tab_qiand,R.drawable.tab_dongt2,R.drawable.tab_mine2};
+    private int[] uncheckId={R.mipmap.tab_home,R.drawable.tab_xiaox,R.drawable.tab_qiand,R.drawable.tab_dongt,R.drawable.tab_mine};
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ServiceSettings.updatePrivacyShow(this,true,true);
-        ServiceSettings.updatePrivacyAgree(this,true);
-
+    public int initLayout() {
+        return R.layout.activity_main;
     }
 
+    @Override
+    protected void initData() {
+        setCurrentFragment();
+    }
 
+    @Override
+    protected void initView() {
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button1);
+        button3 = findViewById(R.id.button3);
+        button4 = findViewById(R.id.button3);
+        button5 = findViewById(R.id.button5);
+        tvs[0] = findViewById(R.id.tv1);
+        tvs[1] = findViewById(R.id.tv1);
+        tvs[3] = findViewById(R.id.tv5);
+        tvs[4] = findViewById(R.id.tv5);
+        ivs[0] = findViewById(R.id.iv1);
+        ivs[1] = findViewById(R.id.iv1);
+        ivs[3] = findViewById(R.id.iv5);
+        ivs[4] = findViewById(R.id.iv5);
 
-    public void get(View view) throws AMapException {
-        ServiceSettings.updatePrivacyShow(this,true,true);
-        ServiceSettings.updatePrivacyAgree(this,true);
-        WeatherSearchQuery mquery = new WeatherSearchQuery("北京", WeatherSearchQuery.WEATHER_TYPE_LIVE);
-        WeatherSearch mweathersearch = new WeatherSearch(this);
-        mweathersearch.setOnWeatherSearchListener(new WeatherSearch.OnWeatherSearchListener() {
-            @Override
-            public void onWeatherLiveSearched(LocalWeatherLiveResult weatherLiveResult, int rCode) {
-                if (rCode == 1000) {
-                    if (weatherLiveResult != null&&weatherLiveResult.getLiveResult() != null) {
-                        LocalWeatherLive weatherlive = weatherLiveResult.getLiveResult();
-                        Log.e("INFO","report" + weatherlive.getReportTime() + weatherlive.getWeather());
-                        /*
-                        reporttime1.setText(weatherlive.getReportTime()+"发布");
-                        BreakIterator weather = null;
-                        weather.setText(weatherlive.getWeather());
-                        Temperature.setText(weatherlive.getTemperature()+"°");
-                        wind.setText(weatherlive.getWindDirection()+"风     "+weatherlive.getWindPower()+"级");
-                        humidity.setText("湿度         "+weatherlive.getHumidity()+"%");
+        name = getIntent().getStringExtra("LOGIN");
 
-                         */
-                    }else {
-                        //ToastUtil.show(WeatherSearchActivity.this, R.string.no_result);
-                    }
-                }else {
+        MainFragment fragment1 = new MainFragment();
+        mFragments.add(fragment1);
+        HelpFragment fragment2 = new HelpFragment();
+        mFragments.add(fragment2);
+        SelfFragment fragment3 = new SelfFragment();
+        mFragments.add(fragment3);
+        GoodsFragment fragment4 = new GoodsFragment();
+        mFragments.add(fragment4);
+        SelfFragment fragment5 = new SelfFragment();
+        mFragments.add(fragment5);
+        setListener();
+    }
 
+    protected void setListener() {
+        button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
+        button4.setOnClickListener(this);
+        button5.setOnClickListener(this);
+    }
+
+    private void setCurrentFragment() {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        for (int i = 0; i < mFragments.size(); i++) {
+            if (mFragments.get(i) != null) {
+                transaction.hide(mFragments.get(i));
+            }
+            if(i!=2){
+                if (i == index) {
+                    tvs[i].setTextColor(getResources().getColor(R.color.mainText));
+                    tvs[i].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
+                    TextPaint tp = tvs[i].getPaint();
+                    tp.setFakeBoldText(true);
+                    ivs[i].setImageResource(checkId[i]);
+                } else {
+                    tvs[i].setTextColor(getResources().getColor(R.color.bar_grey));
+                    tvs[i].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+                    TextPaint tp = tvs[i].getPaint();
+                    tp.setFakeBoldText(false);
+                    ivs[i].setImageResource(uncheckId[i]);
                 }
             }
 
-            @Override
-            public void onWeatherForecastSearched(LocalWeatherForecastResult localWeatherForecastResult, int i) {
-
-            }
-        });
-        mweathersearch.setQuery(mquery);
-        mweathersearch.searchWeatherAsyn(); //异步搜索
-    }
-
-    public void poi(View view) throws IOException, AMapException {
-
-        query = new PoiSearch.Query("八达岭长城", "风景名胜", "");
-        query.setPageNum(1);
-        query.setPageSize(10);
-        poiSearch = new PoiSearch(this, query);
-        poiSearch.setOnPoiSearchListener(new POIListener());
-        poiSearch.searchPOIAsyn();
+        }
+        //
+        if (!mFragments.get(index).isAdded()) {
+            transaction.add(R.id.container, mFragments.get(index));
+        }
+        transaction.show(mFragments.get(index));
+        transaction.commit();
 
     }
 
-    public void openCamera(View view)
-    {
-        Intent intent = new Intent(this, CameraActivity.class);
-        startActivity(intent);
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.button1) {
+            index = 0;
+            setCurrentFragment();
+        }
+//        else if (view.getId() == R.id.button2) {
+//            index = 1;
+//            setCurrentFragment();
+//
+//        }
+        else if (view.getId() == R.id.button3) {
+            /**
+             * graph
+             */
+
+        }
+//        else if (view.getId() == R.id.button4) {
+//            index = 3;
+//            setCurrentFragment();
+//        }
+        else if (view.getId() == R.id.button5) {
+            index = 4;
+            setCurrentFragment();
+        }
+
     }
 
-    public void openLuggage(View view)
-    {
-        Intent intent = new Intent(this, MyLuggageActivity.class);
-        startActivity(intent);
-    }
 
-    public void openPOISearch(View view)
-    {
-        Intent intent = new Intent(this, PoiSearchAroundActivity.class);
-        startActivity(intent);
-    }
 }

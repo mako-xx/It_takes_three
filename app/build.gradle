@@ -30,8 +30,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     // Specify tflite file should not be compressed for the app apk
@@ -52,6 +52,9 @@ dependencies {
     implementation project(path: ':lib_task_api')
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
+    //implementation files('libs\\AMap_Search_V7.9.0_20210331.jar')
+    implementation files('libs\\Msc.jar')
+    implementation files('libs\\picture_library-1.0.6-sources.jar')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

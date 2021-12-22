@@ -38,6 +38,54 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ItTakesThree">
+
+
+        <activity
+            android:name=".ui.activity.main.self.MyAnswerListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.self.MyHelpListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.self.MyCommentListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.self.MyTravelListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.self.ChangeInfoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.help.PostHelpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.help.HelpDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.travel.PostActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.travel.PostCommentActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.main.travel.TravelDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.login.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activity.login.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".luggage.MyLuggageActivity"
             android:exported="true" />
@@ -52,15 +100,7 @@
             android:name=".mapview"
             android:exported="true"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".luggage.ClassifierActivity"
             android:exported="true"
