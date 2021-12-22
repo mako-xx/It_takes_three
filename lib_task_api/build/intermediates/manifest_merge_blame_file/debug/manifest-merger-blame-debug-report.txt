@@ -4,8 +4,8 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="21"
-6-->D:\git\It_takes_three\lib_task_api\src\main\AndroidManifest.xml
+6-->D:\It_Takes_Three\lib_task_api\src\main\AndroidManifest.xml
 7        android:targetSdkVersion="29" />
-7-->D:\git\It_takes_three\lib_task_api\src\main\AndroidManifest.xml
+7-->D:\It_Takes_Three\lib_task_api\src\main\AndroidManifest.xml
 8
 9</manifest>
