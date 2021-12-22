@@ -1,6 +1,9 @@
 package com.example.ittakesthree;
 
 import android.app.Application;
+
+import com.amap.api.maps.MapsInitializer;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
@@ -22,4 +25,5 @@ public class MyApplication extends Application {
     public static File RETURNFILE;
 
     public static final String SOCKETIP = "192.168.50.82";
+
 }
