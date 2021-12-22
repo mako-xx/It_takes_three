@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.ittakesthree.R;
+import com.example.ittakesthree.luggage.MyLuggageActivity;
 import com.example.ittakesthree.tools.CommonTool;
 import com.example.ittakesthree.ui.activity.login.LoginActivity;
 import com.example.ittakesthree.ui.activity.main.self.ChangeInfoActivity;
@@ -81,7 +82,7 @@ public class SelfFragment extends Fragment implements View.OnClickListener {
             startActivity(intent);
 
         }else if (view.getId() == R.id.btn5) {
-            Intent intent = new Intent(getActivity(), MyAnswerListActivity.class);
+            Intent intent = new Intent(getActivity(), MyLuggageActivity.class);
             startActivity(intent);
 
         }
