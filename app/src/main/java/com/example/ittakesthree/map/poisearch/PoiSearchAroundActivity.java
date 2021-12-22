@@ -52,7 +52,7 @@ public class PoiSearchAroundActivity extends Activity implements OnClickListener
     private PoiResult poiResult; // poi返回的结果
     private int currentPage = 0;// 当前页面，从0开始计数
     private PoiSearch.Query query;// Poi查询条件类
-    private LatLonPoint lp = new LatLonPoint(30.42, 107.40);// 116.472995,39.993743
+    private LatLonPoint lp = new LatLonPoint(30.42, 99.40);// 116.472995,39.993743
     private Marker locationMarker; // 选择的点
     private Marker detailMarker;
     private Marker mlastMarker;
