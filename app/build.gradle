@@ -30,8 +30,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     // Specify tflite file should not be compressed for the app apk
@@ -50,6 +50,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     //implementation files('/libs/Android_Map3D_SDK_V8.1.0_20211029.jar')
     implementation files('libs/Android_Map3D_SDK_V8.1.0_20211029.jar')
+    implementation files('libs/showapi_sdk_java.jar')
     implementation fileTree(include: '*.jar', dir: 'libs')
     implementation project(path: ':lib_task_api')
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
@@ -66,6 +67,10 @@ dependencies {
     //implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.78'
     implementation 'com.google.code.gson:gson:2.8.9'
 
+    implementation ("com.github.bumptech.glide:glide:4.11.0") {
+        exclude group: "com.android.support"
+    }
+    implementation "com.android.support:support-fragment:26.1.0"
 
     // Import the Task Vision Library dependency
     implementation 'org.tensorflow:tensorflow-lite-task-vision:0.1.0'
