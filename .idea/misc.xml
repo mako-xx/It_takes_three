@@ -10,15 +10,9 @@
         <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_classifier.xml" value="0.1" />
         <entry key="..\:/It_Takes_Three/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/It_Takes_Three/app/src/main/res/layout/layout_bottom_sheet.xml" value="0.3333333333333333" />
-        <entry key="..\:/git/It_takes_three/app/src/main/res/layout/activity_main2.xml" value="0.2509057971014493" />
-        <entry key="..\:/git/It_takes_three/app/src/main/res/layout/activity_poi_search_around.xml" value="0.1" />
-        <entry key="..\:/git/It_takes_three/app/src/main/res/layout/activity_weather.xml" value="0.10925925925925926" />
-        <entry key="..\:/git/It_takes_three/app/src/main/res/layout/poiaroundsearch_activity.xml" value="0.2375" />
-        <entry key="..\:/git/It_takes_three/app/src/main/res/layout/weather_activity.xml" value="0.2509057971014493" />
-        <entry key="..\:/git/It_takes_three/app/src/main/res/xml/network_security_config.xml" value="0.1125" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>
