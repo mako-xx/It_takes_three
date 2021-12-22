@@ -8,6 +8,7 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
@@ -191,4 +192,16 @@ public class ClassifierActivity extends AbstractCameraActivity implements OnImag
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
+
+    Intent intent;
+
+    public void getDetailedList(View view)
+    {
+        intent = new Intent();
+        intent.putExtra("LIST", 1);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
+    static final int RESULT_OK = -1;
 }
