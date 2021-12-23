@@ -7,6 +7,7 @@ import com.amap.api.maps.MapsInitializer;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,7 +32,7 @@ public class MyApplication extends Application {
      */
     public void addActivity(Activity activity) {
         if (activityStack == null) {
-            activityStack = new Stack<Activity>();
+            activityStack = new Stack<>();
         }
         activityStack.add(activity);
     }
@@ -39,6 +40,18 @@ public class MyApplication extends Application {
     ExecutorService executorService = Executors.newFixedThreadPool(10);
 
     public static final String key = "fcace4432b6ae24ebf047b06d2fce1ee";
+
+    //public static final String SOCKETIP = "139.196.6.145";
+
+    //public static final String SOCKETIP = "192.168.50.82";
+
+    //public static final String SOCKETIP = "192.168.50.82";
+
+    public static final String SOCKETIP = "192.168.43.82";
+
+    public static List<File> FILELIST = new ArrayList<>(9);
+
+    public static int CURRENTLOCATE;
 
 
     public static File currentImageFile = null;
@@ -48,7 +61,7 @@ public class MyApplication extends Application {
 
     public static File RETURNFILE;
 
-    public static final String SOCKETIP = "192.168.50.82";
+
 
     public static final String appid = "870197";
 
