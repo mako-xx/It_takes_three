@@ -1,16 +1,22 @@
 package com.example.ittakesthree;
 
+import android.content.Intent;
 import android.text.TextPaint;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationListener;
 import com.example.ittakesthree.ui.activity.base.BaseActivity;
+import com.example.ittakesthree.ui.activity.login.LoginActivity;
+import com.example.ittakesthree.ui.activity.main.travel.TravelDetailActivity;
 import com.example.ittakesthree.ui.fragment.GoodsFragment;
 import com.example.ittakesthree.ui.fragment.HelpFragment;
 import com.example.ittakesthree.ui.fragment.MainFragment;
@@ -18,7 +24,7 @@ import com.example.ittakesthree.ui.fragment.SelfFragment;
 
 import java.util.ArrayList;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener, AMapLocationListener {
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private ArrayList<Fragment> mFragments = new ArrayList<>();
@@ -58,6 +64,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ivs[4] = findViewById(R.id.iv5);
 
         name = getIntent().getStringExtra("LOGIN");
+
+        if(name == null)
+        {
+            Toast.makeText(this, "Please log in", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
 
         MainFragment fragment1 = new MainFragment();
         mFragments.add(fragment1);
@@ -125,6 +138,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //
 //        }
         else if (view.getId() == R.id.button3) {
+
+
             /**
              * graph
              */
@@ -142,4 +157,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
+    @Override
+    public void onLocationChanged(AMapLocation aMapLocation) {
+
+    }
 }

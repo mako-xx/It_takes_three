@@ -37,7 +37,7 @@
             android:paddingTop="15dp"
             android:paddingRight="20dp"
             android:paddingBottom="15dp"
-            android:src="@mipmap/ic_return" />
+            android:src="@mipmap/ic_return"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -122,18 +122,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         appDatabase = AppDatabase.getInstance(getApplicationContext());
         userDao = appDatabase.userDao();
 
-        List<User> lists;
-        lists = userDao.loadAll();
-        for (int i = 0;i<lists.size();i++){
-            if(lists.get(i).getUsername().equals(loginName)){
-                if(lists.get(i).getPassword().equals(loginPwd)){
-                    Intent intent = new Intent(this, MainActivity.class);
-                    intent.putExtra("LOGIN",loginName);
-                    startActivity(intent);
-                }
-            }
+
+        User user = userDao.loadUserByUsername(loginName);
+        if(user != null && user.getPassword().equals(loginPwd))
+        {
+            Toast.makeText(this, "log in successfully", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("LOGIN", loginName);
+            startActivity(intent);
         }
-        Toast.makeText(this,"wrong num!!!",Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this,"username or password is wrong",Toast.LENGTH_SHORT).show();
     }
 
     @Override

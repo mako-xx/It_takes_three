@@ -150,13 +150,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         userDao = db.userDao();
         userDao.save(user);
 
-        List<User> lists;
-        lists = userDao.loadAll();
-        for (int i = 0;i<lists.size();i++){
-            Log.e("0",lists.get(i).toString());
-        }
-
-        Toast.makeText(this,"successfully---------------------",Toast.LENGTH_LONG).show();
 
         finish();
 

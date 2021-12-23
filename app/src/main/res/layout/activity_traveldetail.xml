@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/travel_detail">
 
     <include layout="@layout/view_common_title" />
 
@@ -20,15 +21,32 @@
         android:dividerHeight="@dimen/line_hight"
         android:listSelector="@color/touming"
         android:scrollbars="none" />
-    <TextView
-        android:id="@+id/but"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
-        android:layout_height="40dp"
-        android:background="@drawable/corner_button"
-        android:clickable="false"
-        android:gravity="center"
-        android:text="我要评论"
-        android:textColor="@color/white"
-        android:textSize="14dp" />
+        android:layout_height="40dp">
+        <TextView
+            android:id="@+id/but"
+            android:layout_width="0dp"
+            android:layout_margin="10dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/corner_button"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="我要评论"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+        <TextView
+            android:id="@+id/navigate"
+            android:layout_width="0dp"
+            android:layout_margin="10dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/corner_button"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="导航"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+    </LinearLayout>
 </LinearLayout>

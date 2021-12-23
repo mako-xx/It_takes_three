@@ -26,6 +26,15 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- 声明后台定位权限 -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -37,10 +46,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ItTakesThree">
-        <activity
-            android:name=".album.MyPhotoAlbumActivity"
-            android:exported="false" />
+        android:theme="@style/Theme.ItTakesThree"
+        android:usesCleartextTraffic="true">
+
+
         <activity
             android:name=".ui.activity.main.self.MyAnswerListActivity"
             android:exported="true" />
@@ -74,9 +83,13 @@
         <activity
             android:name=".ui.activity.login.RegisterActivity"
             android:exported="true" />
+        <activity android:name=".album.MyPhotoAlbumActivity" android:exported="true"/>
+        <activity android:name=".album.CameraActivity"/>
+        <activity android:name=".album.MyAlbumActivity"/>
         <activity
             android:name=".ui.activity.login.LoginActivity"
-            android:exported="true">
+            android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -85,18 +98,16 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
+
         <activity
             android:name=".luggage.MyLuggageActivity"
             android:exported="true" />
         <activity android:name=".map.poisearch.PoiSearchAroundActivity" />
-        <activity
-            android:name=".album.MyAlbumActivity"
-            android:exported="true" />
-        <activity
-            android:name=".album.CameraActivity"
-            android:exported="true" />
 
+        <activity android:name=".map.RouteMapActivity" android:exported="true"/>
         <activity
             android:name=".luggage.ClassifierActivity"
             android:exported="true"

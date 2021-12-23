@@ -16,12 +16,14 @@ import android.widget.TextView;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.MapsInitializer;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.core.ServiceSettings;
 import com.amap.api.services.route.BusPath;
 import com.amap.api.services.route.BusRouteResult;
 import com.amap.api.services.route.DrivePath;
@@ -40,7 +42,8 @@ import com.example.ittakesthree.util.AMapUtil;
 import java.util.List;
 
 public class RouteMapActivity extends Activity implements AMap.OnMapClickListener,
-        AMap.OnMarkerClickListener, AMap.OnInfoWindowClickListener, AMap.InfoWindowAdapter, RouteSearch.OnRouteSearchListener {
+        AMap.OnMarkerClickListener, AMap.OnInfoWindowClickListener, AMap.InfoWindowAdapter,
+        RouteSearch.OnRouteSearchListener {
 
     private AMap aMap;
     private MapView mapView;
@@ -70,6 +73,11 @@ public class RouteMapActivity extends Activity implements AMap.OnMapClickListene
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        MapsInitializer.updatePrivacyShow(getApplicationContext(),true,true);
+        MapsInitializer.updatePrivacyAgree(getApplicationContext(),true);
+        ServiceSettings.updatePrivacyShow(getApplicationContext(),true,true);
+        ServiceSettings.updatePrivacyAgree(getApplicationContext(),true);
         final Intent intent = getIntent();
 
         super.onCreate(savedInstanceState);
@@ -214,15 +222,20 @@ public class RouteMapActivity extends Activity implements AMap.OnMapClickListene
                     routeTimeDes.setText(des);
                     routeDetailDes.setVisibility(View.VISIBLE);
                     //int taxiCost = (int) driveRouteResult.getTaxiCost();
-                    /*
+
                     bottomLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
+                            Intent intent = new Intent(mContext,
+                                    DriveRouteDetailActivity.class);
+                            intent.putExtra("drive_path", drivePath);
+                            intent.putExtra("drive_result",
+                                    driveRouteResult);
+                            startActivity(intent);
                         }
                     });
 
-                     */
+
                 }
                 else if(driveRouteResult != null && driveRouteResult.getPaths() == null)
                     ToastUtil.show(mContext,  "对不起，没有搜索到相关数据");
@@ -263,15 +276,20 @@ public class RouteMapActivity extends Activity implements AMap.OnMapClickListene
                     String des = AMapUtil.getFriendlyTime(dur) + "(" + AMapUtil.getFriendlyLength(dis) + ")";
                     routeTimeDes.setText(des);
                     routeDetailDes.setVisibility(View.GONE);
-                    /*
+
                     bottomLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
+                            Intent intent = new Intent(mContext,
+                                    WalkRouteDetailActivity.class);
+                            intent.putExtra("walk_path", walkPath);
+                            intent.putExtra("walk_result",
+                                    walkRouteResult);
+                            startActivity(intent);
                         }
                     });
 
-                     */
+
 
                 }
                 else if(walkRouteResult != null && walkRouteResult.getPaths() == null){

@@ -14,9 +14,15 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
+import com.example.ittakesthree.MainActivity;
 import com.example.ittakesthree.R;
 import com.example.ittakesthree.data.CommentBean;
 import com.example.ittakesthree.data.TravelBean;
+import com.example.ittakesthree.map.RouteMapActivity;
+import com.example.ittakesthree.pojo.Contentlist;
+import com.example.ittakesthree.pojo.PicList;
 import com.example.ittakesthree.ui.activity.base.BaseActivity;
 import com.example.ittakesthree.ui.adapter.CommentListAdapter;
 import com.example.ittakesthree.ui.adapter.MyLunboPagerAdapter;
@@ -25,7 +31,9 @@ import com.example.ittakesthree.ui.fragment.MainFragment;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+@GlideModule
 public class TravelDetailActivity extends BaseActivity implements View.OnClickListener {
     private TextView titleTv;
     private TextView rightTv;
@@ -39,14 +47,16 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
     private TextView contentTv;
     private TextView ctimeTv;
     private TextView biaotiTv;
+    private TextView navi;
     private ImageView zanIv;
-    private Integer id;
-    private TravelBean travelBean;
+    private String id;
+    private Contentlist spot;
     private MyLunboPagerAdapter pagerAdapter;
     private ArrayList<ImageView> viewlist = new ArrayList<>();
     private boolean isRunning = true;
     private CommentListAdapter adapter;
     private static ArrayList<CommentBean> beans = new ArrayList<>();
+    public static String spotName = "";
 
     @Override
     public int initLayout() {
@@ -61,14 +71,16 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void initView() {
 
-        getBanner();
 
-        id = getIntent().getIntExtra("id", 0);
+
+        id = getIntent().getStringExtra("id");
         titleTv = findViewById(R.id.titleTv);
-        titleTv.setText("攻略详情");
+        titleTv.setText("景点详情");
+
 
         View header = LayoutInflater.from(this).inflate(R.layout.header_traveldetail, null);
         bannerLayout = header.findViewById(R.id.bannerLayout);
+
         vp = header.findViewById(R.id.vp);
         dot = header.findViewById(R.id.dot);
         biaotiTv = header.findViewById(R.id.biaotiTv);
@@ -81,12 +93,15 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
         listView.setAdapter(adapter);
         listView.addHeaderView(header);
         but = findViewById(R.id.but);
+        navi = findViewById(R.id.navigate);
         bindData();
+        getBanner();
         pagerAdapter = new MyLunboPagerAdapter(viewlist);
 
         vp.setAdapter(pagerAdapter);
         zanIv.setOnClickListener(this);
         but.setOnClickListener(this);
+        navi.setOnClickListener(this);
 
     }
 
@@ -98,6 +113,20 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
                 intent.putExtra("id", id);
                 startActivityForResult(intent, 1);
 
+                break;
+
+            case R.id.navigate:
+                Intent intent1 = new Intent(this, RouteMapActivity.class);
+                //MainFragment mainFragment =
+                double endLat = Double.parseDouble(spot.getLocation().getLat());
+                double endLon = Double.parseDouble(spot.getLocation().getLon());
+                double startLat = MainFragment.getLatitude();
+                double startLon = MainFragment.getLatitude();
+                intent1.putExtra("endLat", endLat);
+                intent1.putExtra("endLon", endLon);
+                intent1.putExtra("startLat", MainFragment.getLatitude());
+                intent1.putExtra("startLon", MainFragment.getLongitude());
+                startActivity(intent1);
                 break;
             case R.id.zanIv:
                 //zan();
@@ -176,30 +205,35 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
         });
     }*/
 
-    private void bindData() {
 
-        for (int i = 0;i< MainFragment.beans.size();i++){
-            if(MainFragment.beans.get(i).getId().equals(id)){
-                travelBean = MainFragment.beans.get(i);
-                break;
-            }
-        }
+   private void bindData() {
 
-        if (travelBean == null) return;
-        //getBanner();
-        //beginLunbo();
-        biaotiTv.setText(travelBean.getTitle());
-        contentTv.setText(travelBean.getContent());
-        nameTv.setText("作者:" + travelBean.getUname());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String ctime = simpleDateFormat.format(new Date(travelBean.getCreatetime()));
-        ctimeTv.setText(ctime);
-      /*  if (travelBean.getIszan() > 0) {
-            zanIv.setImageResource(R.mipmap.party_zan);
-        } else {
-            zanIv.setImageResource(R.mipmap.party_nozan);
-        }*/
-    }
+       if(id == null || id.equals(""))
+           return;
+
+       for (int i = 0;i< MainFragment.spots.size();i++){
+           if(MainFragment.spots.get(i).getId().equals(id)){
+               spot = MainFragment.spots.get(i);
+               break;
+           }
+       }
+
+       if (spot == null) return;
+       //getBanner();
+       //beginLunbo();
+       biaotiTv.setText(spot.getName());
+       contentTv.setText(spot.getSummary());
+       nameTv.setText("地址:" + spot.getAddress());
+       //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+       //String ctime = simpleDateFormat.format(new Date(travelBean.getCreatetime()));
+       //ctimeTv.setText(ctime);
+     /*  if (travelBean.getIszan() > 0) {
+           zanIv.setImageResource(R.mipmap.party_zan);
+       } else {
+           zanIv.setImageResource(R.mipmap.party_nozan);
+       }*/
+   }
+
 
 //    private void getBanner() {
 //        if (TextUtils.isEmpty(travelBean.getPic())) {
@@ -262,11 +296,26 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
 
     private void getBanner() {
         int banners[] = {R.drawable.banner1, R.drawable.banner2, R.drawable.banner3, R.drawable.banner4};
-        for (int i = 0; i < banners.length; i++) {
-            ImageView imageView = new ImageView(this);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setImageResource(banners[i]);
-            viewlist.add(imageView);
+        List<PicList> picLists = spot.getPicList();
+        int num = Math.min(picLists.size(), 10);
+        if(picLists != null && picLists.size() > 0) {
+            for (int i = 0; i < num; i++) {
+                ImageView imageView = new ImageView(this);
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                //    imageView.setImageResource(banners[i]);
+                Glide.with(this).load(picLists.get(i).getPicUrl()).into(imageView);
+                viewlist.add(imageView);
+            }
+        }
+        else
+        {
+            for(int i = 0; i < banners.length; i++)
+            {
+                ImageView imageView = new ImageView(this);
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                imageView.setImageResource(banners[i]);
+                viewlist.add(imageView);
+            }
         }
 //        pagerAdapter.notifyDataSetChanged();
 //        if (viewlist.size() > 1) {
