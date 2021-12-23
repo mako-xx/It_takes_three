@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.ittakesthree.R;
+import com.example.ittakesthree.album.MyPhotoAlbumActivity;
 import com.example.ittakesthree.luggage.MyLuggageActivity;
 import com.example.ittakesthree.tools.CommonTool;
 import com.example.ittakesthree.ui.activity.login.LoginActivity;
@@ -78,7 +79,7 @@ public class SelfFragment extends Fragment implements View.OnClickListener {
             startActivity(intent);
 
         }else if (view.getId() == R.id.btn4) {
-            Intent intent = new Intent(getActivity(), MyHelpListActivity.class);
+            Intent intent = new Intent(getActivity(), MyPhotoAlbumActivity.class);
             startActivity(intent);
 
         }else if (view.getId() == R.id.btn5) {
