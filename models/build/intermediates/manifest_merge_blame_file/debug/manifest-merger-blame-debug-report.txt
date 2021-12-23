@@ -4,8 +4,8 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="24"
-6-->D:\It_Takes_Three\models\src\main\AndroidManifest.xml
+6-->D:\It_takes_three\models\src\main\AndroidManifest.xml
 7        android:targetSdkVersion="29" />
-7-->D:\It_Takes_Three\models\src\main\AndroidManifest.xml
+7-->D:\It_takes_three\models\src\main\AndroidManifest.xml
 8
 9</manifest>

@@ -1,9 +1,12 @@
 package com.example.ittakesthree.ui.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,26 +17,44 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
+import com.amap.api.maps.MapsInitializer;
+import com.amap.api.services.core.ServiceSettings;
+import com.example.ittakesthree.MainActivity;
+import com.example.ittakesthree.MyApplication;
 import com.example.ittakesthree.R;
 import com.example.ittakesthree.data.TravelBean;
+import com.example.ittakesthree.pojo.Contentlist;
+import com.example.ittakesthree.pojo.JsonRootBean;
 import com.example.ittakesthree.tools.CommonTool;
 import com.example.ittakesthree.ui.activity.main.travel.TravelDetailActivity;
 import com.example.ittakesthree.ui.adapter.MyLunboPagerAdapter;
+import com.example.ittakesthree.ui.adapter.SpotListAdapter;
 import com.example.ittakesthree.ui.adapter.TravelListAdapter;
 import com.example.ittakesthree.ui.refresh.BasePullToRefreshView;
 import com.example.ittakesthree.ui.refresh.PullToRefreshView;
 import com.example.ittakesthree.ui.view.bezier.BezierBannerDot;
+import com.google.gson.Gson;
+import com.show.api.ShowApiRequest;
+
+import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class MainFragment extends Fragment implements BasePullToRefreshView.OnHeaderRefreshListener, BasePullToRefreshView.OnFooterRefreshListener, TravelListAdapter.ZanIF {
+public class MainFragment extends Fragment implements BasePullToRefreshView.OnHeaderRefreshListener,
+        BasePullToRefreshView.OnFooterRefreshListener, TravelListAdapter.ZanIF, AMapLocationListener {
     View view;
     //广告图
     private ViewPager vp;
@@ -49,21 +70,55 @@ public class MainFragment extends Fragment implements BasePullToRefreshView.OnHe
     private EditText searchEt;
     private TextView searchBtn;
 
-    public static ArrayList<TravelBean> beans = new ArrayList<>();
-    private TravelListAdapter adapter;
+    //public static ArrayList<TravelBean> beans = new ArrayList<>();
+    //private TravelListAdapter adapter;
     private String keyword="";
+
+    AMapLocationClient locationClient = null;
+    AMapLocationClientOption locationClientOption = null;
+    private String city;
+    private SpotListAdapter spotListAdapter;
+    public static List<Contentlist> spots = new ArrayList<>();
+    private int num;
+    private static double longitude;
+    private static double latitude;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        MapsInitializer.updatePrivacyShow(getActivity().getApplicationContext(),true,true);
+        MapsInitializer.updatePrivacyAgree(getActivity().getApplicationContext(),true);
+        ServiceSettings.updatePrivacyShow(getActivity().getApplicationContext(),true,true);
+        ServiceSettings.updatePrivacyAgree(getActivity().getApplicationContext(),true);
+
         view = inflater.inflate(R.layout.fragment_main, container, false);
         initView();
-        getData();
+        startLocate();
+
+        //getData();
+
         return view;
+    }
+
+    private void startLocate() {
+        try {
+            locationClient = new AMapLocationClient(getActivity().getApplicationContext());
+            locationClient.setLocationListener(this);
+            locationClientOption = new AMapLocationClientOption();
+            locationClientOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.Transport);
+            locationClientOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+            locationClientOption.setNeedAddress(true);
+            locationClient.setLocationOption(locationClientOption);
+            locationClient.stopLocation();
+            locationClient.startLocation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     protected void initView() {
         TextView titleTv = view.findViewById(R.id.titleTv);
-        titleTv.setText("旅行攻略");
+        titleTv.setText("景点推荐");
         rightTv = view.findViewById(R.id.rightTv);
         rightTv.setVisibility(View.VISIBLE);
         vp = view.findViewById(R.id.vp);
@@ -77,8 +132,8 @@ public class MainFragment extends Fragment implements BasePullToRefreshView.OnHe
         beginLunbo();
         pullToRefreshView = view.findViewById(R.id.pullToRefreshView);
         listView = view.findViewById(R.id.listView);
-        adapter = new TravelListAdapter(getActivity(), beans, this);
-        listView.setAdapter(adapter);
+        spotListAdapter = new SpotListAdapter(getActivity(), spots);
+        listView.setAdapter(spotListAdapter);
 
 
         setListener();
@@ -93,7 +148,7 @@ public class MainFragment extends Fragment implements BasePullToRefreshView.OnHe
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //if (Constants.userBean.getType() == 1) {
                     Intent intent = new Intent(getActivity(), TravelDetailActivity.class);
-                    intent.putExtra("id", beans.get(i).getId());
+                    intent.putExtra("id", spots.get(i).getId());
                     startActivity(intent);
                 //}
 
@@ -110,8 +165,36 @@ public class MainFragment extends Fragment implements BasePullToRefreshView.OnHe
             @Override
             public void onClick(View view) {
                 keyword=searchEt.getText().toString();
-                page=1;
-                //getData();
+                new Thread() {
+                    @Override
+                    public void run() {
+                        Looper.prepare();
+                        String res = new ShowApiRequest("https://route.showapi.com/268-1",
+                                MyApplication.appid, MyApplication.appkey)
+                                .addTextPara("keyword", keyword)
+                                .addTextPara("proId","")
+                                .addTextPara("cityId","")
+                                .addTextPara("areaId","")
+                                .addTextPara("page","")
+                                .post();
+                        Log.e("INFO", res);
+                        JsonRootBean data = new Gson().fromJson(res, JsonRootBean.class);
+                        List<Contentlist> contentlist = data.getShowapi_res_body().getPagebean().getContentlist();
+                        num = data.getShowapi_res_body().getPagebean().getAllNum();
+                        spots.clear();
+                        if(num > 20)
+                            num = 20;
+                        for(int i = 0; i < num; i++)
+                            spots.add(contentlist.get(i));
+                        Handler handler = new Handler(){
+                            @Override
+                            public void handleMessage(@NonNull Message msg) {
+                                spotListAdapter.notifyDataSetChanged();
+                            }
+                        };
+                        handler.sendEmptyMessage(0);
+                    }
+                }.start();
             }
         });
     }
@@ -168,7 +251,8 @@ public class MainFragment extends Fragment implements BasePullToRefreshView.OnHe
 
     @Override
     public void onFooterRefresh(BasePullToRefreshView view) {
-        page++;
+        pullToRefreshView.onFooterRefreshComplete();
+        pullToRefreshView.onHeaderRefreshBegin();
         //getData();
     }
 
@@ -176,11 +260,18 @@ public class MainFragment extends Fragment implements BasePullToRefreshView.OnHe
     public void onHeaderRefresh(BasePullToRefreshView view) {
         page = 1;
         view.onHeaderRefreshBegin();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        pullToRefreshView.onFooterRefreshComplete();
+        pullToRefreshView.onHeaderRefreshBegin();
         //getData();
     }
 
 
-    private static void getData() {
+    private void getData() {
 //        HttpParams params = new HttpParams();
 //        params.put("page", page);
 //        params.put("limit", limit);
@@ -207,6 +298,25 @@ public class MainFragment extends Fragment implements BasePullToRefreshView.OnHe
 //                CommonTool.showToast(msg);
 //            }
 //        });
+//
+//        if(city == null)
+//            return;
+//        String res = new ShowApiRequest("http://route.showapi.com/268-1",
+//                MyApplication.appid, MyApplication.appkey)
+//                .addTextPara("keyword", city)
+//                .addTextPara("proId","")
+//                .addTextPara("cityId","")
+//                .addTextPara("areaId","")
+//                .addTextPara("page","")
+//                .post();
+//        JsonRootBean data = new Gson().fromJson(res, JsonRootBean.class);
+//        List<Contentlist> contentlist = data.getShowapi_res_body().getPagebean().getContentlist();
+//        num = data.getShowapi_res_body().getPagebean().getAllNum();
+//        if(num > 10)
+//            num = 10;
+//        for(int i = 0; i < num; i++)
+//            spots.add(contentlist.get(i));
+        /*
         TravelBean travelBean1 = new TravelBean();
         long time = new Date().getTime();
         travelBean1.setCreatetime(time);
@@ -215,7 +325,9 @@ public class MainFragment extends Fragment implements BasePullToRefreshView.OnHe
         travelBean1.setTitle("佛山");
         travelBean1.setPic(R.drawable.banner1);
         travelBean1.setId(11);
-        beans.add(travelBean1);
+        .add(travelBean1);
+
+         */
     }
 
 
@@ -243,8 +355,69 @@ public class MainFragment extends Fragment implements BasePullToRefreshView.OnHe
             "佛山是广府文化的核心区域，有粤剧、陶瓷、剪纸、秋色等传统文化，佛山是国家历史文化名城， [2-3]  历史上是中国天下四聚、四大名镇之一，" +
             "有陶艺之乡、武术之乡、粤剧之乡之称， [4]  是中国龙舟龙狮文化名城，粤剧发源地，广府文化发源地、兴盛地、传承地。"};
 
+    @Override
+    public void onLocationChanged(AMapLocation aMapLocation) {
+        Toast.makeText(getActivity().getApplicationContext(), "定位启动", Toast.LENGTH_SHORT).show();
+        int errorCode = aMapLocation.getErrorCode();
+        String errorInfo = aMapLocation.getErrorInfo();
+        longitude = aMapLocation.getLongitude();
+        latitude = aMapLocation.getLatitude();
+        Toast.makeText(getActivity().getApplicationContext(), aMapLocation.getErrorCode() + "", Toast.LENGTH_SHORT).show();
+        if(aMapLocation != null && aMapLocation.getErrorCode() == 0)
+        {
 
-   /* @Override
+            String s = aMapLocation.getCity();
+            city = s.substring(0, s.length() - 1);
+            if(city == null)
+                return;
+            this.longitude = aMapLocation.getLongitude();
+            new Thread(){
+
+                @Override
+                public void run() {
+                    Looper.prepare();
+                    String res = new ShowApiRequest("https://route.showapi.com/268-1",
+                            MyApplication.appid, MyApplication.appkey)
+                            .addTextPara("keyword", city)
+                            .addTextPara("proId","")
+                            .addTextPara("cityId","")
+                            .addTextPara("areaId","")
+                            .addTextPara("page","")
+                            .post();
+                    Log.e("INFO", res);
+                    JsonRootBean data = new Gson().fromJson(res, JsonRootBean.class);
+                    List<Contentlist> contentlist = data.getShowapi_res_body().getPagebean().getContentlist();
+                    num = data.getShowapi_res_body().getPagebean().getAllNum();
+
+                    if(num > 20)
+                        num = 20;
+                    for(int i = 0; i < num; i++)
+                        spots.add(contentlist.get(i));
+                    Handler handler = new Handler(){
+                        @Override
+                        public void handleMessage(@NonNull Message msg) {
+                            spotListAdapter.notifyDataSetChanged();
+                        }
+                    };
+                    handler.sendEmptyMessage(0);
+
+                    Toast.makeText(getActivity().getApplicationContext(), "已刷新显示", Toast.LENGTH_SHORT).show();
+                }
+            }.start();
+
+        }
+        locationClient.stopLocation();
+    }
+
+    public static double getLongitude() {
+        return longitude;
+    }
+
+    public static double getLatitude() {
+        return latitude;
+    }
+
+/* @Override
     public void zan(int position) {
         ((BaseActivity) getActivity()).showLoadingDialog();
         HttpParams params = new HttpParams();

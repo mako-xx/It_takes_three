@@ -50,4 +50,8 @@ public class MyApplication extends Application {
 
     public static final String SOCKETIP = "192.168.50.82";
 
+    public static final String appid = "870197";
+
+    public static final String appkey = "b5509c065bbd4134b5517eafce11fd9f";
+
 }

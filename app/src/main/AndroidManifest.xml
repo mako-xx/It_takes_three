@@ -26,6 +26,15 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- 声明后台定位权限 -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -37,7 +46,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ItTakesThree">
+        android:theme="@style/Theme.ItTakesThree"
+        android:usesCleartextTraffic="true">
 
 
         <activity
@@ -99,11 +109,8 @@
         <activity
             android:name=".CameraActivity"
             android:exported="false" />
-        <activity
-            android:name=".mapview"
-            android:exported="true"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
 
+        <activity android:name=".map.RouteMapActivity" android:exported="true"/>
         <activity
             android:name=".luggage.ClassifierActivity"
             android:exported="true"
