@@ -83,6 +83,9 @@
         <activity
             android:name=".ui.activity.login.RegisterActivity"
             android:exported="true" />
+        <activity android:name=".album.MyPhotoAlbumActivity" android:exported="true"/>
+        <activity android:name=".album.CameraActivity"/>
+        <activity android:name=".album.MyAlbumActivity"/>
         <activity
             android:name=".ui.activity.login.LoginActivity"
             android:exported="true" >
@@ -103,12 +106,6 @@
             android:name=".luggage.MyLuggageActivity"
             android:exported="true" />
         <activity android:name=".map.poisearch.PoiSearchAroundActivity" />
-        <activity
-            android:name=".MyAlbumActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CameraActivity"
-            android:exported="false" />
 
         <activity android:name=".map.RouteMapActivity" android:exported="true"/>
         <activity
