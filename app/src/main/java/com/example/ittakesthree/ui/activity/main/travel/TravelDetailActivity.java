@@ -17,10 +17,13 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.annotation.GlideModule;
 import com.example.ittakesthree.MainActivity;
+import com.example.ittakesthree.MyApplication;
 import com.example.ittakesthree.R;
 import com.example.ittakesthree.WeatherSearchActivity;
+import com.example.ittakesthree.dao.CommentDao;
 import com.example.ittakesthree.data.CommentBean;
 import com.example.ittakesthree.data.TravelBean;
+import com.example.ittakesthree.database.AppDatabase;
 import com.example.ittakesthree.map.RouteMapActivity;
 import com.example.ittakesthree.pojo.Comment;
 import com.example.ittakesthree.pojo.Contentlist;
@@ -80,7 +83,6 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
         titleTv = findViewById(R.id.titleTv);
         titleTv.setText("景点详情");
 
-
         View header = LayoutInflater.from(this).inflate(R.layout.header_traveldetail, null);
         bannerLayout = header.findViewById(R.id.bannerLayout);
 
@@ -136,7 +138,9 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
 
             case R.id.weather:
                 Intent intent2 = new Intent(this, WeatherSearchActivity.class);
-                intent2.putExtra("cityName", spot.getCityName() == null ? spot.getProName() : spot.getCityName());
+
+                intent2.putExtra("cityId", spot.getProId());
+                intent2.putExtra("cityName", spot.getCityName() + "市");
                 startActivity(intent2);
                 break;
 
@@ -172,7 +176,11 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
             String content = data.getStringExtra("content");
             short score = Short.parseShort(data.getStringExtra("score"));
             boolean anonymous = data.getBooleanExtra("anonymous", false);
-            Comment comment = new Comment(content, score, MainActivity.uid, anonymous, spot.getName());
+            boolean startegy = data.getBooleanExtra("strategy", false);
+            Comment comment = new Comment(content, score, MainActivity.uid, anonymous, spot.getName(), startegy);
+            AppDatabase db = AppDatabase.getInstance(this);
+            CommentDao commentDao = db.commentDao();
+            commentDao.save(comment);
             if(!comment.isAnonymous())
                 comments.add(comment);
             pagerAdapter.notifyDataSetChanged();

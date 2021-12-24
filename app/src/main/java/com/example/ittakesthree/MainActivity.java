@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
+import com.example.ittakesthree.database.AppDatabase;
 import com.example.ittakesthree.ui.activity.base.BaseActivity;
 import com.example.ittakesthree.ui.activity.login.LoginActivity;
 import com.example.ittakesthree.ui.activity.main.travel.TravelDetailActivity;

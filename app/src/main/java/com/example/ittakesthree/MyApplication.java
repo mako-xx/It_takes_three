@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.amap.api.maps.MapsInitializer;
+import com.example.ittakesthree.database.AppDatabase;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -60,8 +61,6 @@ public class MyApplication extends Application {
     public static ArrayList<String> luggageItemList = null;
 
     public static File RETURNFILE;
-
-
 
     public static final String appid = "870197";
 

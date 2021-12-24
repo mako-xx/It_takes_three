@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ittakesthree.MainActivity;
+import com.example.ittakesthree.MyApplication;
 import com.example.ittakesthree.R;
 import com.example.ittakesthree.dao.BaggageDao;
 import com.example.ittakesthree.dao.CommentDao;
@@ -20,8 +22,6 @@ import java.util.List;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
-
-    private AppDatabase db;
     private UserDao userDao;
     private CommentDao commentDao;
     private BaggageDao baggageDao;
@@ -37,6 +37,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private TextView butOk;
     private int sex = 0;//0男 1女
     private String account, name, phone, pwd, repwd;
+    private AppDatabase db;
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {

@@ -18,8 +18,11 @@ public class PostCommentActivity extends BaseActivity implements View.OnClickLis
     private EditText scoreEt;
     private TextView isanoy;
     private TextView noanoy;
+    private TextView isstrategy;
+    private TextView nostrategy;
     private TextView commitBtn;
     private boolean anonymous;
+    private boolean strategy;
 
     @Override
     public int initLayout() {
@@ -40,6 +43,8 @@ public class PostCommentActivity extends BaseActivity implements View.OnClickLis
         scoreEt = (EditText) findViewById(R.id.scoreEt);
         isanoy = (TextView) findViewById(R.id.yesHideTv);
         noanoy = (TextView) findViewById(R.id.noHideTv);
+        isstrategy = findViewById(R.id.yes_strategy);
+        nostrategy = findViewById(R.id.no_strategy);
         setListener();
     }
 
@@ -48,6 +53,8 @@ public class PostCommentActivity extends BaseActivity implements View.OnClickLis
         commitBtn.setOnClickListener(this);
         isanoy.setOnClickListener(this);
         noanoy.setOnClickListener(this);
+        isstrategy.setOnClickListener(this);
+        nostrategy.setOnClickListener(this);
     }
 
     @Override
@@ -64,6 +71,21 @@ public class PostCommentActivity extends BaseActivity implements View.OnClickLis
             noanoy.setBackgroundResource(R.drawable.corner_choice);
             anonymous = false;
         }
+
+        else if(view.getId() == R.id.yes_strategy)
+        {
+            isstrategy.setBackgroundResource(R.drawable.corner_choice);
+            nostrategy.setBackgroundResource(R.drawable.corner_unchoice);
+            strategy = true;
+        }
+
+        else if(view.getId() == R.id.no_strategy)
+        {
+            isstrategy.setBackgroundResource(R.drawable.corner_unchoice);
+            nostrategy.setBackgroundResource(R.drawable.corner_choice);
+            strategy = false;
+        }
+
         else if(view.getId() == R.id.commitBtn)
         {
             String content = contentEt.getText().toString();
@@ -84,6 +106,7 @@ public class PostCommentActivity extends BaseActivity implements View.OnClickLis
             intent.putExtra("content", content);
             intent.putExtra("score", score);
             intent.putExtra("anonymous", anonymous);
+            intent.putExtra("strategy", strategy);
             setResult(2, intent);
             finish();
         }
