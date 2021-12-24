@@ -62,11 +62,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
         titleTv.setText("注册");
         /**
-         * ni chen
+         * 用户名
          */
         accountEt = findViewById(R.id.accountEt);
         /**
-         * yong hu ming
+         * 昵称
          */
         nameEt = findViewById(R.id.nameEt);
         /**
@@ -145,7 +145,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         }else {
             flag = false;
         }
-        User user = new User(name,pwd,account,phone,null,flag,null);
+        User user = new User(account,pwd,name,phone,null,flag,null);
 
         db = AppDatabase.getInstance(getApplicationContext());
         userDao = db.userDao();
