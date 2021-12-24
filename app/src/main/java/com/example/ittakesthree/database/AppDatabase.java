@@ -19,7 +19,7 @@ import com.example.ittakesthree.pojo.Photo;
 import com.example.ittakesthree.pojo.User;
 
 /** 数据库 */
-@Database(entities = {User.class, Comment.class, Photo.class, Baggage.class}, version = 2, exportSchema = false)
+@Database(entities = {User.class, Comment.class, Photo.class, Baggage.class}, version = 3, exportSchema = false)
 @TypeConverters({Converter.class})
 
 public abstract class AppDatabase extends RoomDatabase {

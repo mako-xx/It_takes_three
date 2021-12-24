@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
+import com.example.ittakesthree.database.AppDatabase;
 import com.example.ittakesthree.ui.activity.base.BaseActivity;
 import com.example.ittakesthree.ui.activity.login.LoginActivity;
 import com.example.ittakesthree.ui.activity.main.travel.TravelDetailActivity;
@@ -24,7 +25,7 @@ import com.example.ittakesthree.ui.fragment.SelfFragment;
 
 import java.util.ArrayList;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener, AMapLocationListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private ArrayList<Fragment> mFragments = new ArrayList<>();
@@ -157,8 +158,5 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
 
-    @Override
-    public void onLocationChanged(AMapLocation aMapLocation) {
 
-    }
 }

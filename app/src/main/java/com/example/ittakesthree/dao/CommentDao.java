@@ -42,6 +42,9 @@ public interface CommentDao {
     @Query("select * from t_comment where cid = :cid")
     Comment loadByCid(String cid);
 
+    @Query("select * from t_comment where author = :uid and type = 1")
+    List<Comment> loadStrategy(String uid);
+
     /**
      * 根据用户id加载评论(没什么用,建议用userdao下的loadUserComment)
      * */

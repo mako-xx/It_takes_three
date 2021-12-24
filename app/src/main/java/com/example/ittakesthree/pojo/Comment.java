@@ -46,18 +46,23 @@ public class Comment {
     @ColumnInfo(name = "spot")
     private String spot;
 
+    /** 评论类型 */
+    @ColumnInfo(name = "type")
+    private boolean type;
+
     /** 发布时间 */
     @ColumnInfo(name = "publish")
     private Date publish;
 
 
-    public Comment(String content, short score, String author, boolean isAnonymous, String spot) {
+    public Comment(String content, short score, String author, boolean isAnonymous, String spot, boolean type) {
         cid = UUIDUtil.generateUID();
         this.content = content;
         this.score = score;
         this.author = author;
         this.isAnonymous = isAnonymous;
         this.spot = spot;
+        this.type = type;
         publish = new Date();
     }
 
@@ -131,5 +136,13 @@ public class Comment {
 
     public void setCid(String cid) {
         this.cid = cid;
+    }
+
+    public boolean getType() {
+        return type;
+    }
+
+    public void setType(boolean type) {
+        this.type = type;
     }
 }

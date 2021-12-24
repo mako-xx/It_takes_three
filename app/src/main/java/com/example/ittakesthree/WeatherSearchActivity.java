@@ -34,12 +34,14 @@ public class WeatherSearchActivity extends Activity implements OnWeatherSearchLi
     private LocalWeatherLive weatherlive;
     private LocalWeatherForecast weatherforecast;
     private List<LocalDayWeatherForecast> forecastlist = null;
+    private String cityId;
     private String cityname = "北京市";//天气搜索的城市，可以写名称或adcode；
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.weather_activity);
+        cityId = getIntent().getStringExtra("cityId");
         cityname = getIntent().getStringExtra("cityName");
         init();
         searchliveweather();

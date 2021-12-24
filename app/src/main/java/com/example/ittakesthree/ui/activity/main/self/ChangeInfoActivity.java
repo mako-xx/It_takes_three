@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.ittakesthree.MainActivity;
+import com.example.ittakesthree.MyApplication;
 import com.example.ittakesthree.R;
 import com.example.ittakesthree.dao.UserDao;
 import com.example.ittakesthree.database.AppDatabase;
