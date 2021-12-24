@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId "com.example.ittakesthree"
         minSdk 24
-        targetSdk 31
+        targetSdk 24
         versionCode 1
         versionName "1.0"
 
@@ -27,6 +27,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
     compileOptions {

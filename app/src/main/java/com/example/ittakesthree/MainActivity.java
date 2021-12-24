@@ -24,7 +24,7 @@ import com.example.ittakesthree.ui.fragment.SelfFragment;
 
 import java.util.ArrayList;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener, AMapLocationListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private ArrayList<Fragment> mFragments = new ArrayList<>();
@@ -157,8 +157,5 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
 
-    @Override
-    public void onLocationChanged(AMapLocation aMapLocation) {
 
-    }
 }

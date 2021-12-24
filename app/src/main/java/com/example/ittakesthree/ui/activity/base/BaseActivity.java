@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
+import com.amap.api.maps.MapsInitializer;
+import com.amap.api.services.core.ServiceSettings;
 import com.example.ittakesthree.R;
 import com.example.ittakesthree.MyApplication;
 import com.example.ittakesthree.tools.CommonTool;
@@ -40,7 +42,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         savedInstanceState1 = savedInstanceState;
-
+        MapsInitializer.updatePrivacyShow(getApplicationContext(),true,true);
+        MapsInitializer.updatePrivacyAgree(getApplicationContext(),true);
+        ServiceSettings.updatePrivacyShow(getApplicationContext(),true,true);
+        ServiceSettings.updatePrivacyAgree(getApplicationContext(),true);
         MyApplication.getContext().addActivity(this);
 
         setContentView(initLayout());

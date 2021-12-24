@@ -136,7 +136,7 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
 
             case R.id.weather:
                 Intent intent2 = new Intent(this, WeatherSearchActivity.class);
-                intent2.putExtra("cityName", spot.getCityName());
+                intent2.putExtra("cityName", spot.getCityName() == null ? spot.getProName() : spot.getCityName());
                 startActivity(intent2);
                 break;
 

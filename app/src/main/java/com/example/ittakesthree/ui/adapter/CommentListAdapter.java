@@ -68,7 +68,7 @@ public class CommentListAdapter extends BaseAdapter {
         User user = userDao.loadUserByUid(comment.getAuthor());
         viewHolder.nameTv.setText(user.getUsername());
         viewHolder.contentTv.setText(comment.getContent());
-        viewHolder.scoreTv.setText(comment.getScore());
+        viewHolder.scoreTv.setText(comment.getScore() + "");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String time = simpleDateFormat.format(comment.getPublish());
         viewHolder.timeTv.setText(time);
