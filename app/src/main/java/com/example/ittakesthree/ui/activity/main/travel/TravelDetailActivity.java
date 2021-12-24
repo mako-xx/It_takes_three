@@ -140,7 +140,7 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
                 Intent intent2 = new Intent(this, WeatherSearchActivity.class);
 
                 intent2.putExtra("cityId", spot.getProId());
-                intent2.putExtra("cityName", spot.getCityName() + "市");
+                intent2.putExtra("cityName", (spot.getCityName() == null ? spot.getProName() : spot.getCityName()) + "市");
                 startActivity(intent2);
                 break;
 
