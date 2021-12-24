@@ -40,6 +40,7 @@ public class WeatherSearchActivity extends Activity implements OnWeatherSearchLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.weather_activity);
+        cityname = getIntent().getStringExtra("cityName");
         init();
         searchliveweather();
         searchforcastsweather();

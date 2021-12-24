@@ -18,9 +18,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.annotation.GlideModule;
 import com.example.ittakesthree.MainActivity;
 import com.example.ittakesthree.R;
+import com.example.ittakesthree.WeatherSearchActivity;
 import com.example.ittakesthree.data.CommentBean;
 import com.example.ittakesthree.data.TravelBean;
 import com.example.ittakesthree.map.RouteMapActivity;
+import com.example.ittakesthree.pojo.Comment;
 import com.example.ittakesthree.pojo.Contentlist;
 import com.example.ittakesthree.pojo.PicList;
 import com.example.ittakesthree.ui.activity.base.BaseActivity;
@@ -48,6 +50,7 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
     private TextView ctimeTv;
     private TextView biaotiTv;
     private TextView navi;
+    private TextView weather;
     private ImageView zanIv;
     private String id;
     private Contentlist spot;
@@ -55,7 +58,7 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
     private ArrayList<ImageView> viewlist = new ArrayList<>();
     private boolean isRunning = true;
     private CommentListAdapter adapter;
-    private static ArrayList<CommentBean> beans = new ArrayList<>();
+    private static ArrayList<Comment> comments = new ArrayList<>();
     public static String spotName = "";
 
     @Override
@@ -89,11 +92,12 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
         contentTv = header.findViewById(R.id.contentTv);
         zanIv = header.findViewById(R.id.zanIv);
         listView = findViewById(R.id.listView);
-        adapter = new CommentListAdapter(this, beans);
+        adapter = new CommentListAdapter(this, comments);
         listView.setAdapter(adapter);
         listView.addHeaderView(header);
         but = findViewById(R.id.but);
         navi = findViewById(R.id.navigate);
+        weather = findViewById(R.id.weather);
         bindData();
         getBanner();
         pagerAdapter = new MyLunboPagerAdapter(viewlist);
@@ -102,7 +106,7 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
         zanIv.setOnClickListener(this);
         but.setOnClickListener(this);
         navi.setOnClickListener(this);
-
+        weather.setOnClickListener(this);
     }
 
     @Override
@@ -111,6 +115,7 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
             case R.id.but:
                 Intent intent = new Intent(this, PostCommentActivity.class);
                 intent.putExtra("id", id);
+                //intent.putExtra("author", )
                 startActivityForResult(intent, 1);
 
                 break;
@@ -128,9 +133,14 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
                 intent1.putExtra("startLon", MainFragment.getLongitude());
                 startActivity(intent1);
                 break;
-            case R.id.zanIv:
-                //zan();
+
+            case R.id.weather:
+                Intent intent2 = new Intent(this, WeatherSearchActivity.class);
+                intent2.putExtra("cityName", spot.getCityName());
+                startActivity(intent2);
                 break;
+
+
 
         }
     }
@@ -158,8 +168,14 @@ public class TravelDetailActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == 1 && resultCode == 1) {
-            initData();
+        if (requestCode == 1 && resultCode == 2) {
+            String content = data.getStringExtra("content");
+            short score = Short.parseShort(data.getStringExtra("score"));
+            boolean anonymous = data.getBooleanExtra("anonymous", false);
+            Comment comment = new Comment(content, score, MainActivity.uid, anonymous, spot.getName());
+            if(!comment.isAnonymous())
+                comments.add(comment);
+            pagerAdapter.notifyDataSetChanged();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

@@ -235,12 +235,12 @@ public class PoiSearchAroundActivity extends Activity implements OnClickListener
                         showSuggestCity(suggestionCities);
                     } else {
                         ToastUtil.show(PoiSearchAroundActivity.this,
-                                "R.string.no_result");
+                                "抱歉，没有查询到相关结果");
                     }
                 }
             } else {
                 ToastUtil
-                        .show(PoiSearchAroundActivity.this, "R.string.no_result");
+                        .show(PoiSearchAroundActivity.this, "抱歉，没有查询到相关结果");
             }
         } else  {
             ToastUtil.showerror(this.getApplicationContext(), rcode);

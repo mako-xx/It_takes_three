@@ -79,7 +79,12 @@ public class RouteMapActivity extends Activity implements AMap.OnMapClickListene
         ServiceSettings.updatePrivacyShow(getApplicationContext(),true,true);
         ServiceSettings.updatePrivacyAgree(getApplicationContext(),true);
         final Intent intent = getIntent();
-
+        double startLat = intent.getDoubleExtra("startLat", 0);
+        double startLon = intent.getDoubleExtra("startLon", 0);
+        double endLat = intent.getDoubleExtra("endLat", 0);
+        double endLon = intent.getDoubleExtra("endLon", 0);
+        startPoint = new LatLonPoint(startLat, startLon);
+        endPoint = new LatLonPoint(endLat, endLon);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_map);
         mContext = this.getApplicationContext();
@@ -329,7 +334,7 @@ public class RouteMapActivity extends Activity implements AMap.OnMapClickListene
 
     public void onWalkClick(View view) {
         searchRouteResult(ROUTE_TYPE_WALK, RouteSearch.WALK_DEFAULT);
-        drive.setImageResource(R.drawable.route_bus_normal);
+        drive.setImageResource(R.drawable.route_drive_normal);
         bus.setImageResource(R.drawable.route_bus_normal);
         walk.setImageResource(R.drawable.route_walk_select);
         mapView.setVisibility(View.VISIBLE);

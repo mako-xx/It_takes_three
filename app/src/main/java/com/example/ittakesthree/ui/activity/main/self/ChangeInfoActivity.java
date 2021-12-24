@@ -162,7 +162,7 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
 //            }
 //        });
 
-        String name = MainActivity.name;
+        String name = MainActivity.uid;
         RegisterActivity registerActivity = new RegisterActivity();
         UserDao userDao;
 

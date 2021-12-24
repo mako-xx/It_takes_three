@@ -47,9 +47,9 @@ public class DriveRouteDetailActivity extends Activity {
 		String dis = AMapUtil.getFriendlyLength((int) mDrivePath
 				.getDistance());
 		mTitleDriveRoute.setText(dur + "(" + dis + ")");
-		int taxiCost = (int) mDriveRouteResult.getTaxiCost();
-		mDesDriveRoute.setText("打车约"+taxiCost+"元");
-		mDesDriveRoute.setVisibility(View.VISIBLE);
+		//int taxiCost = (int) mDriveRouteResult.getTaxiCost();
+		//mDesDriveRoute.setText("打车约"+taxiCost+"元");
+		//mDesDriveRoute.setVisibility(View.VISIBLE);
 		configureListView();
 	}
 
