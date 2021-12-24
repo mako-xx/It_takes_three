@@ -57,6 +57,7 @@
             android:textSize="14dp" />
 
         <TextView
+            android:id="@+id/scoreTv"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="6dp"
             android:text="景点打分:"
@@ -66,17 +67,8 @@
 
         </TextView>
 
-        <TextView
-            android:text="5"
-            android:textColor="#00E1FF"
-            android:gravity="center"
-            android:id="@+id/scoreTv"
-            android:layout_width="29dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="5dp"
-            >
 
-        </TextView>
+
     </LinearLayout>
 
 
