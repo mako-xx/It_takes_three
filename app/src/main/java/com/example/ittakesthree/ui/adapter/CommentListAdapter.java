@@ -66,9 +66,9 @@ public class CommentListAdapter extends BaseAdapter {
         Comment comment = comments.get(position);
 
         User user = userDao.loadUserByUid(comment.getAuthor());
-        viewHolder.nameTv.setText(user.getUsername());
+        viewHolder.nameTv.setText(user.getUsername() + "作于" + comment.getSpot());
         viewHolder.contentTv.setText(comment.getContent());
-        viewHolder.scoreTv.setText(comment.getScore() + "");
+        viewHolder.scoreTv.setText("评分:" + comment.getScore());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String time = simpleDateFormat.format(comment.getPublish());
         viewHolder.timeTv.setText(time);
