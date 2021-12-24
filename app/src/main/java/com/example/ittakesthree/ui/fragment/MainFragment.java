@@ -179,13 +179,17 @@ public class MainFragment extends Fragment implements BasePullToRefreshView.OnHe
                                 .post();
                         Log.e("INFO", res);
                         JsonRootBean data = new Gson().fromJson(res, JsonRootBean.class);
-                        List<Contentlist> contentlist = data.getShowapi_res_body().getPagebean().getContentlist();
-                        num = data.getShowapi_res_body().getPagebean().getAllNum();
                         spots.clear();
-                        if(num > 20)
-                            num = 20;
-                        for(int i = 0; i < num; i++)
-                            spots.add(contentlist.get(i));
+                        if(data.getShowapi_res_body().getPagebean() != null) {
+                            List<Contentlist> contentlist = data.getShowapi_res_body().getPagebean().getContentlist();
+                            num = data.getShowapi_res_body().getPagebean().getAllNum();
+                            if (num > 20)
+                                num = 20;
+                            for (int i = 0; i < num; i++)
+                                spots.add(contentlist.get(i));
+                        }
+                        //else
+                            //CommonTool.showToast("没有找到相关景点");
                         Handler handler = new Handler(){
                             @Override
                             public void handleMessage(@NonNull Message msg) {
@@ -376,13 +380,16 @@ public class MainFragment extends Fragment implements BasePullToRefreshView.OnHe
                 @Override
                 public void run() {
                     Looper.prepare();
+                    String page = "1";
+                    if(city.equals("西安"))
+                        page = "2";
                     String res = new ShowApiRequest("https://route.showapi.com/268-1",
                             MyApplication.appid, MyApplication.appkey)
                             .addTextPara("keyword", city)
                             .addTextPara("proId","")
                             .addTextPara("cityId","")
                             .addTextPara("areaId","")
-                            .addTextPara("page","")
+                            .addTextPara("page",page)
                             .post();
                     Log.e("INFO", res);
                     JsonRootBean data = new Gson().fromJson(res, JsonRootBean.class);
@@ -391,6 +398,7 @@ public class MainFragment extends Fragment implements BasePullToRefreshView.OnHe
 
                     if(num > 20)
                         num = 20;
+
                     for(int i = 0; i < num; i++)
                         spots.add(contentlist.get(i));
                     Handler handler = new Handler(){

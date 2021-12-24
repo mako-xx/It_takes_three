@@ -1,8 +1,11 @@
 package com.example.ittakesthree.ui.activity.main.travel;
 
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ittakesthree.R;
 import com.example.ittakesthree.tools.CommonTool;
@@ -12,7 +15,11 @@ public class PostCommentActivity extends BaseActivity implements View.OnClickLis
 
     private TextView common_title;
     private EditText contentEt;
+    private EditText scoreEt;
+    private TextView isanoy;
+    private TextView noanoy;
     private TextView commitBtn;
+    private boolean anonymous;
 
     @Override
     public int initLayout() {
@@ -30,22 +37,59 @@ public class PostCommentActivity extends BaseActivity implements View.OnClickLis
         common_title.setText("评论");
         contentEt = (EditText) findViewById(R.id.contentEt);
         commitBtn = (TextView) findViewById(R.id.commitBtn);
+        scoreEt = (EditText) findViewById(R.id.scoreEt);
+        isanoy = (TextView) findViewById(R.id.yesHideTv);
+        noanoy = (TextView) findViewById(R.id.noHideTv);
         setListener();
     }
 
 
     public void setListener() {
         commitBtn.setOnClickListener(this);
+        isanoy.setOnClickListener(this);
+        noanoy.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-//        if (view.getId() == R.id.commitBtn) {
-//            commit();
-//        }
-        CommonTool.showToast("评论成功,等待管理员审核！");
+        if(view.getId() == R.id.yesHideTv)
+        {
+            isanoy.setBackgroundResource(R.drawable.corner_choice);
+            noanoy.setBackgroundResource(R.drawable.corner_unchoice);
+            anonymous = true;
+        }
+        else if(view.getId() == R.id.noHideTv)
+        {
+            isanoy.setBackgroundResource(R.drawable.corner_unchoice);
+            noanoy.setBackgroundResource(R.drawable.corner_choice);
+            anonymous = false;
+        }
+        else if(view.getId() == R.id.commitBtn)
+        {
+            String content = contentEt.getText().toString();
+            String score = scoreEt.getText().toString();
+            if(TextUtils.isEmpty(content)){
+                Toast.makeText(this,"请输入内容",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(TextUtils.isEmpty(score)){
+                Toast.makeText(this,"请输入打分",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(Double.parseDouble(score)>5 || Double.parseDouble(score) < 0){
+                Toast.makeText(this,"评分范围是0-5",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Intent intent = getIntent();
+            intent.putExtra("content", content);
+            intent.putExtra("score", score);
+            intent.putExtra("anonymous", anonymous);
+            setResult(2, intent);
+            finish();
+        }
+//
 
-        finish();
+
     }
 
 

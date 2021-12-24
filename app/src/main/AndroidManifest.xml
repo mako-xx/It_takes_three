@@ -112,6 +112,11 @@
             android:name=".luggage.ClassifierActivity"
             android:exported="true"
             android:label="@string/tfe_ic_app_name" />
+        <activity android:name=".WeatherSearchActivity"/>
+
+        <activity android:name=".map.WalkRouteDetailActivity" />
+        <activity android:name=".map.DriveRouteDetailActivity"/>
+        <activity android:name=".map.BusRouteDetailActivity"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

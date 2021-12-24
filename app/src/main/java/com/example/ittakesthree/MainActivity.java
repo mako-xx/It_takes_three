@@ -29,7 +29,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private ArrayList<Fragment> mFragments = new ArrayList<>();
 
-    public static String name;
+    public static String uid;
 
     private View button1, button2, button3, button4, button5;
     private TextView[] tvs = new TextView[5];
@@ -63,9 +63,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         ivs[3] = findViewById(R.id.iv5);
         ivs[4] = findViewById(R.id.iv5);
 
-        name = getIntent().getStringExtra("LOGIN");
+        uid = getIntent().getStringExtra("LOGIN");
 
-        if(name == null)
+        if(uid == null)
         {
             Toast.makeText(this, "Please log in", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);

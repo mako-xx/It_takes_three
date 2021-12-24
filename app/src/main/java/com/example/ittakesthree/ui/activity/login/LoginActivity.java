@@ -128,7 +128,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         {
             Toast.makeText(this, "log in successfully", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("LOGIN", loginName);
+            intent.putExtra("LOGIN", user.getUid());
             startActivity(intent);
         }
         else
