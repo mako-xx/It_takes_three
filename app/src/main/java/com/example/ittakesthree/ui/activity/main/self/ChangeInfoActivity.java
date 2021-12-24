@@ -1,9 +1,11 @@
 package com.example.ittakesthree.ui.activity.main.self;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ittakesthree.MainActivity;
 import com.example.ittakesthree.MyApplication;
@@ -13,6 +15,7 @@ import com.example.ittakesthree.database.AppDatabase;
 import com.example.ittakesthree.pojo.User;
 import com.example.ittakesthree.tools.CommonTool;
 import com.example.ittakesthree.ui.activity.base.BaseActivity;
+import com.example.ittakesthree.ui.activity.login.LoginActivity;
 import com.example.ittakesthree.ui.activity.login.RegisterActivity;
 
 import java.util.List;
@@ -27,8 +30,9 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
     private TextView sex0;
     private TextView sex1;
     private TextView butOk;
-    private int sex = 0;//0男 1女
+    private boolean sex = false;//0男 1女
     private String account, name, phone, pwd, repwd;
+    private AppDatabase db = AppDatabase.getInstance(this);
 
     @Override
     public int initLayout() {
@@ -60,11 +64,11 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
         } else if (view.getId() == R.id.sex0) {
             sex0.setBackgroundResource(R.drawable.corner_choice);
             sex1.setBackgroundResource(R.drawable.corner_unchoice);
-            sex = 0;
+            sex = false;
         } else if (view.getId() == R.id.sex1) {
             sex0.setBackgroundResource(R.drawable.corner_unchoice);
             sex1.setBackgroundResource(R.drawable.corner_choice);
-            sex = 1;
+            sex = true;
         }
     }
 
@@ -77,24 +81,24 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
 
 
         if (TextUtils.isEmpty(name)) {
-            CommonTool.showToast("请输入姓名");
+            Toast.makeText(this,"请输入昵称", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(phone)) {
-            CommonTool.showToast("请输入电话");
+            Toast.makeText(this,"请输入电话", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (TextUtils.isEmpty(pwd)) {
-            CommonTool.showToast("请输入密码");
+            Toast.makeText(this,"请输入密码", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(repwd)) {
-            CommonTool.showToast("请输入确认密码");
+            Toast.makeText(this,"请输入确认密码", Toast.LENGTH_SHORT).show();
             return;
         }
         if (!pwd.equals(repwd)) {
-            CommonTool.showToast("密码两次输入不一致");
+            Toast.makeText(this,"密码两次输入不一致", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -106,32 +110,17 @@ public class ChangeInfoActivity extends BaseActivity implements View.OnClickList
 
 
     private void commit() {
-//        HttpParams params = new HttpParams();
-//        params.put("id", Constants.userBean.getId() );
-//        params.put("account", Constants.userBean.getAccount());
-//        params.put("name", name);
-//        params.put("phone", phone);
-//        params.put("sex", sex);
-//        params.put("password", pwd);
-//        params.put("type",1);
-//
-//        HttpTool.postObject(UrlConfig.changeUser, params, BaseBean.class, new HttpTool.HttpListener() {
-//            @Override
-//            public void onComplected(Object... result) {
-//                BaseBean bean = (BaseBean) result[0];
-//                if (bean.code == 0) {
-//                    CommonTool.showToast("修改成功！");
-//                    finish();
-//                } else {
-//                    CommonTool.showToast(bean.msg);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailed(String msg) {
-//                CommonTool.showToast(msg);
-//            }
-//        });
+        UserDao userDao = db.userDao();
+        User user = userDao.loadUserByUid(MainActivity.uid);
+        user.setNickname(name);
+        user.setEmail(phone);
+        user.setPassword(pwd);
+        user.setSex(sex);
+        userDao.save(user);
+        MainActivity.uid = null;
+        Toast.makeText(this,"修改成功，请重新登录", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ChangeInfoActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
     public void getInfo() {
 //        HttpParams params = new HttpParams();
